@@ -1,0 +1,79 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "score",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"score(address)": {
+					"details": "Returns the score of a specific user.      The score is typically used to determine the user's eligibility for certain actions or claims.      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.",
+					"params": {
+						"user": "The address of the user whose score is being queried."
+					},
+					"returns": {
+						"_0": "The score of the user as a uint256 value."
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"score(address)": {
+					"notice": "This function should be implemented in the contract that inherits the `IScorer` interface."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/interface/IScorer.sol": "IScorer"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/interface/IScorer.sol": {
+			"keccak256": "0xc61939a802c0e9e2059f20e60a904aeb10fcba36654d64f5737e0da725b01839",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2fa7e4065063f4dba9c9066ed106399f63ff183149c6601646e56446187d0546",
+				"dweb:/ipfs/QmVHx5YbwoCXBB5iHyoAFVk72q7moyStfNbiKVyVLsrXSs"
+			]
+		}
+	},
+	"version": 1
+}
