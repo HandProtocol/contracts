@@ -11,5 +11,5 @@
 
 ## WIP & Deployed Contracts 
 
-Scorer Contract : [https://sepolia.arbiscan.io/address/0x5aea83d3c2837832fcb12703bc677549bdbeb9a7](https://testnet.routescan.io/address/0x5aea83D3C2837832fCb12703Bc677549bdBeb9A7/contract/421614/writeContract?chainid=421614)
-Cookie Jar Contract : [https://sepolia.arbiscan.io/address/0xbc6043be52c675b3d465d60a1f7b7b951a3ff343](https://testnet.routescan.io/address/0xBC6043bE52c675b3d465D60a1f7b7b951A3fF343/contract/421614/readContract?chainid=421614)
+* Scorer Contract : [https://sepolia.arbiscan.io/address/0x5aea83d3c2837832fcb12703bc677549bdbeb9a7](https://testnet.routescan.io/address/0x5aea83D3C2837832fCb12703Bc677549bdBeb9A7/contract/421614/writeContract?chainid=421614)
+* Cookie Jar Contract : [https://sepolia.arbiscan.io/address/0xbc6043be52c675b3d465d60a1f7b7b951a3ff343](https://testnet.routescan.io/address/0xBC6043bE52c675b3d465D60a1f7b7b951A3fF343/contract/421614/readContract?chainid=421614)
