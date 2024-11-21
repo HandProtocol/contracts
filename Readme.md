@@ -8,3 +8,8 @@
 4. Claim Limits: Each user can only claim up to a daily limit and only once per day.
 5. Flexible Fund Management: The owner can manage both the daily limit and minimum score for claims, as well as withdraw funds from the jar if needed.
 6. Tracking and Events: Events are emitted for deposits, claims, and updates to daily limits and score requirements, making it easy to track all actions.
+
+## WIP & Deployed Contracts 
+
+Scorer Contract : https://sepolia.arbiscan.io/address/0x5aea83d3c2837832fcb12703bc677549bdbeb9a7
+Cookie Jar Contract : https://sepolia.arbiscan.io/address/0xbc6043be52c675b3d465d60a1f7b7b951a3ff343
