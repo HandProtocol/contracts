@@ -1,0 +1,564 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "InvalidInitialization",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "NotInitializing",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "OwnableInvalidOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "OwnableUnauthorizedAccount",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "claimant",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Claimed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "depositor",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Deposit",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint64",
+						"name": "version",
+						"type": "uint64"
+					}
+				],
+				"name": "Initialized",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newLimit",
+						"type": "uint256"
+					}
+				],
+				"name": "UpdatedDailyLimit",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newScoreRequired",
+						"type": "uint256"
+					}
+				],
+				"name": "UpdatedScoreRequired",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "claim",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "dailyLimit",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "deposit",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_token",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_scorer",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_dailyLimit",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_scoreRequired",
+						"type": "uint256"
+					}
+				],
+				"name": "initialize",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "lastClaimed",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "scoreRequired",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "scorer",
+				"outputs": [
+					{
+						"internalType": "contract IScorer",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "newScoreRequired",
+						"type": "uint256"
+					}
+				],
+				"name": "setScoreRequired",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_scorer",
+						"type": "address"
+					}
+				],
+				"name": "setScorer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "token",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "newLimit",
+						"type": "uint256"
+					}
+				],
+				"name": "updateDailyLimit",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"errors": {
+				"InvalidInitialization()": [
+					{
+						"details": "The contract is already initialized."
+					}
+				],
+				"NotInitializing()": [
+					{
+						"details": "The contract is not initializing."
+					}
+				],
+				"OwnableInvalidOwner(address)": [
+					{
+						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
+					}
+				],
+				"OwnableUnauthorizedAccount(address)": [
+					{
+						"details": "The caller account is not authorized to perform an operation."
+					}
+				]
+			},
+			"events": {
+				"Initialized(uint64)": {
+					"details": "Triggered when the contract has been initialized or reinitialized."
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"claim(uint256)": {
+					"details": "Allows users to claim a specified amount of funds from the contract.      The claim is subject to the following conditions:      - The amount claimed cannot exceed the daily limit (`dailyLimit`).      - The user can only claim once every 24 hours, enforced by `lastClaimed`.      - The user must have a score that meets or exceeds the required score (`scoreRequired`).      - The contract must have enough funds to fulfill the claim.",
+					"params": {
+						"amount": "The amount of funds the user wishes to claim."
+					}
+				},
+				"deposit(uint256)": {
+					"details": "This can be either ETH or a specific token, depending on what's set in token.",
+					"params": {
+						"amount": "The value to add (in wei for ETH)."
+					}
+				},
+				"initialize(address,address,uint256,address,uint256)": {
+					"details": "This is a special initialization phase where external calls are not allowed, and it can be called only once at instance creation time."
+				},
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"claim(uint256)": {
+					"notice": "Emits a `Claimed` event when the claim is successful.The function supports both ETH and ERC20 token claims. The behavior is based on whether `token` is set to `address(0)` (ETH)."
+				},
+				"deposit(uint256)": {
+					"notice": "Deposits funds into this jar."
+				},
+				"initialize(address,address,uint256,address,uint256)": {
+					"notice": "Initializes this contract with its initial state."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/cookie-jar.sol": "nCookieJar"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol": {
+			"keccak256": "0xc163fcf9bb10138631a9ba5564df1fa25db9adff73bd9ee868a8ae1858fe093a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9706d43a0124053d9880f6e31a59f31bc0a6a3dc1acd66ce0a16e1111658c5f6",
+				"dweb:/ipfs/QmUFmfowzkRwGtDu36cXV9SPTBHJ3n7dG9xQiK5B28jTf2"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol": {
+			"keccak256": "0x631188737069917d2f909d29ce62c4d48611d326686ba6683e26b72a23bfac0b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7a61054ae84cd6c4d04c0c4450ba1d6de41e27e0a2c4f1bcdf58f796b401c609",
+				"dweb:/ipfs/QmUvtdp7X1mRVyC3CsHrtPbgoqWaXHp3S1ZR24tpAQYJWM"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol": {
+			"keccak256": "0xdbef5f0c787055227243a7318ef74c8a5a1108ca3a07f2b3a00ef67769e1e397",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://08e39f23d5b4692f9a40803e53a8156b72b4c1f9902a88cd65ba964db103dab9",
+				"dweb:/ipfs/QmPKn6EYDgpga7KtpkA8wV2yJCYGMtc9K4LkJfhKX2RVSV"
+			]
+		},
+		"@openzeppelin/contracts/interfaces/IERC1363.sol": {
+			"keccak256": "0x9b6b3e7803bc5f2f8cd7ad57db8ac1def61a9930a5a3107df4882e028a9605d7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://da62d6be1f5c6edf577f0cb45666a8aa9c2086a4bac87d95d65f02e2f4c36a4b",
+				"dweb:/ipfs/QmNkpvBpoCMvX8JwAFNSc5XxJ2q5BXJpL5L1txb4QkqVFF"
+			]
+		},
+		"@openzeppelin/contracts/interfaces/IERC165.sol": {
+			"keccak256": "0xde7e9fd9aee8d4f40772f96bb3b58836cbc6dfc0227014a061947f8821ea9724",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://11fea9f8bc98949ac6709f0c1699db7430d2948137aa94d5a9e95a91f61a710a",
+				"dweb:/ipfs/QmQdfRXxQjwP6yn3DVo1GHPpriKNcFghSPi94Z1oKEFUNS"
+			]
+		},
+		"@openzeppelin/contracts/interfaces/IERC20.sol": {
+			"keccak256": "0xce41876e78d1badc0512229b4d14e4daf83bc1003d7f83978d18e0e56f965b9c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a2608291cb038b388d80b79a06b6118a42f7894ff67b7da10ec0dbbf5b2973ba",
+				"dweb:/ipfs/QmWohqcBLbcxmA4eGPhZDXe5RYMMEEpFq22nfkaUMvTfw1"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0xe06a3f08a987af6ad2e1c1e774405d4fe08f1694b67517438b467cecf0da0ef7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://df6f0c459663c9858b6cba2cda1d14a7d05a985bed6d2de72bd8e78c25ee79db",
+				"dweb:/ipfs/QmeTTxZ7qVk9rjEv2R4CpCwdf8UMCcRqDNMvzNxHc3Fnn9"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": {
+			"keccak256": "0xca2ae13e0610f6a99238dd00b97bd786bc92732dae6d6b9d61f573ec51018310",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://75f8c71ce0c91c40dd5f249ace0b7d8270f8f1767231bcf71490f7157d6ba862",
+				"dweb:/ipfs/QmYXgxeDyFHvz3JsXxLEYN6GNUR44ThHeFj5XkpkgMoG4w"
+			]
+		},
+		"@openzeppelin/contracts/utils/Address.sol": {
+			"keccak256": "0x9d8da059267bac779a2dbbb9a26c2acf00ca83085e105d62d5d4ef96054a47f5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c78e2aa4313323cecd1ef12a8d6265b96beee1a199923abf55d9a2a9e291ad23",
+				"dweb:/ipfs/QmUTs2KStXucZezzFo3EYeqYu47utu56qrF7jj1Gue65vb"
+			]
+		},
+		"@openzeppelin/contracts/utils/Errors.sol": {
+			"keccak256": "0x6afa713bfd42cf0f7656efa91201007ac465e42049d7de1d50753a373648c123",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ba1d02f4847670a1b83dec9f7d37f0b0418d6043447b69f3a29a5f9efc547fcf",
+				"dweb:/ipfs/QmQ7iH2keLNUKgq2xSWcRmuBE5eZ3F5whYAkAGzCNNoEWB"
+			]
+		},
+		"@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+			"keccak256": "0x79796192ec90263f21b464d5bc90b777a525971d3de8232be80d9c4f9fb353b8",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f6fda447a62815e8064f47eff0dd1cf58d9207ad69b5d32280f8d7ed1d1e4621",
+				"dweb:/ipfs/QmfDRc7pxfaXB2Dh9np5Uf29Na3pQ7tafRS684wd3GLjVL"
+			]
+		},
+		"contracts/cookie-jar.sol": {
+			"keccak256": "0xb5c58565add1508fc397ad2def28236b3c31e344ac868ec4b858a054498f5fc4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0730a3e1f1e69652254244822772e2fc343a4e8411cc0bb8aef3e833357f32b8",
+				"dweb:/ipfs/QmUPHpsg2BbjZP1AoLspcgyYM1UiZnfDbTwLmV1h5ZrC9v"
+			]
+		},
+		"contracts/interface/IScorer.sol": {
+			"keccak256": "0xc61939a802c0e9e2059f20e60a904aeb10fcba36654d64f5737e0da725b01839",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2fa7e4065063f4dba9c9066ed106399f63ff183149c6601646e56446187d0546",
+				"dweb:/ipfs/QmVHx5YbwoCXBB5iHyoAFVk72q7moyStfNbiKVyVLsrXSs"
+			]
+		}
+	},
+	"version": 1
+}

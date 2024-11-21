@@ -1,0 +1,75 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_owner",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_foo",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "_salt",
+						"type": "bytes32"
+					}
+				],
+				"name": "deploy",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/libs/create2-factory.sol": "Create2Factory"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/libs/create2-factory.sol": {
+			"keccak256": "0x032ad35e85564db0c9ac86ed9f3e1a17a296edf8d44744a048ce15a0907d8106",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://916e6aa7b9b7f62710af2250fa8326afa91753739e42f23d6d88616827226681",
+				"dweb:/ipfs/QmRXv6SwRzTuLdP8AmAurHs4FU4YMUt6GwARUUbaHVmrFZ"
+			]
+		}
+	},
+	"version": 1
+}

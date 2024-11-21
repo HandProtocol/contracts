@@ -1,0 +1,265 @@
+{
+	"id": "e3a6c0212ea4a06f22c8c95ec7575c5e",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.26",
+	"solcLongVersion": "0.8.26+commit.8a97fa7a",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"contracts/interface/IScorer.sol": {
+				"content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.17;\r\n\r\ninterface IScorer {\r\n        /**\r\n     * @dev Returns the score of a specific user.\r\n     *      The score is typically used to determine the user's eligibility for certain actions or claims.\r\n     *      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.\r\n     *\r\n     * @param user The address of the user whose score is being queried.\r\n     * @return The score of the user as a uint256 value.\r\n     * @notice This function should be implemented in the contract that inherits the `IScorer` interface.\r\n     */\r\n    function score(address user) external view returns (uint256);\r\n}\r\n"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"contracts": {
+			"contracts/interface/IScorer.sol": {
+				"IScorer": {
+					"abi": [
+						{
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "user",
+									"type": "address"
+								}
+							],
+							"name": "score",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						}
+					],
+					"devdoc": {
+						"kind": "dev",
+						"methods": {
+							"score(address)": {
+								"details": "Returns the score of a specific user.      The score is typically used to determine the user's eligibility for certain actions or claims.      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.",
+								"params": {
+									"user": "The address of the user whose score is being queried."
+								},
+								"returns": {
+									"_0": "The score of the user as a uint256 value."
+								}
+							}
+						},
+						"version": 1
+					},
+					"evm": {
+						"assembly": "",
+						"bytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"deployedBytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"immutableReferences": {},
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"gasEstimates": null,
+						"legacyAssembly": null,
+						"methodIdentifiers": {
+							"score(address)": "776f3843"
+						}
+					},
+					"metadata": "{\"compiler\":{\"version\":\"0.8.26+commit.8a97fa7a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"score\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"score(address)\":{\"details\":\"Returns the score of a specific user.      The score is typically used to determine the user's eligibility for certain actions or claims.      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.\",\"params\":{\"user\":\"The address of the user whose score is being queried.\"},\"returns\":{\"_0\":\"The score of the user as a uint256 value.\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"score(address)\":{\"notice\":\"This function should be implemented in the contract that inherits the `IScorer` interface.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/interface/IScorer.sol\":\"IScorer\"},\"evmVersion\":\"cancun\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/interface/IScorer.sol\":{\"keccak256\":\"0xc61939a802c0e9e2059f20e60a904aeb10fcba36654d64f5737e0da725b01839\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2fa7e4065063f4dba9c9066ed106399f63ff183149c6601646e56446187d0546\",\"dweb:/ipfs/QmVHx5YbwoCXBB5iHyoAFVk72q7moyStfNbiKVyVLsrXSs\"]}},\"version\":1}",
+					"storageLayout": {
+						"storage": [],
+						"types": null
+					},
+					"userdoc": {
+						"kind": "user",
+						"methods": {
+							"score(address)": {
+								"notice": "This function should be implemented in the contract that inherits the `IScorer` interface."
+							}
+						},
+						"version": 1
+					}
+				}
+			}
+		},
+		"sources": {
+			"contracts/interface/IScorer.sol": {
+				"ast": {
+					"absolutePath": "contracts/interface/IScorer.sol",
+					"exportedSymbols": {
+						"IScorer": [
+							10
+						]
+					},
+					"id": 11,
+					"license": "MIT",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"^",
+								"0.8",
+								".17"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "33:24:0"
+						},
+						{
+							"abstract": false,
+							"baseContracts": [],
+							"canonicalName": "IScorer",
+							"contractDependencies": [],
+							"contractKind": "interface",
+							"fullyImplemented": false,
+							"id": 10,
+							"linearizedBaseContracts": [
+								10
+							],
+							"name": "IScorer",
+							"nameLocation": "71:7:0",
+							"nodeType": "ContractDefinition",
+							"nodes": [
+								{
+									"documentation": {
+										"id": 2,
+										"nodeType": "StructuredDocumentation",
+										"src": "90:541:0",
+										"text": " @dev Returns the score of a specific user.\n      The score is typically used to determine the user's eligibility for certain actions or claims.\n      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.\n @param user The address of the user whose score is being queried.\n @return The score of the user as a uint256 value.\n @notice This function should be implemented in the contract that inherits the `IScorer` interface."
+									},
+									"functionSelector": "776f3843",
+									"id": 9,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "score",
+									"nameLocation": "646:5:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 5,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 4,
+												"mutability": "mutable",
+												"name": "user",
+												"nameLocation": "660:4:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 9,
+												"src": "652:12:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 3,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "652:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "651:14:0"
+									},
+									"returnParameters": {
+										"id": 8,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 7,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 9,
+												"src": "689:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 6,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "689:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "688:9:0"
+									},
+									"scope": 10,
+									"src": "637:61:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								}
+							],
+							"scope": 11,
+							"src": "61:640:0",
+							"usedErrors": [],
+							"usedEvents": []
+						}
+					],
+					"src": "33:670:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}
