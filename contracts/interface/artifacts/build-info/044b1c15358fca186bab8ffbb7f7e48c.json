@@ -1,0 +1,298 @@
+{
+	"id": "044b1c15358fca186bab8ffbb7f7e48c",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.26",
+	"solcLongVersion": "0.8.26+commit.8a97fa7a",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"contracts/interface/IScorer.sol": {
+				"content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.17;\r\n\r\ninterface IScorer {\r\n    /**\r\n     * @dev Returns the score of a specific user for a given score type.\r\n     *      The score type is represented as a `bytes32` hash (e.g., keccak256(\"Trust\")).\r\n     *      The score is typically used to determine the user's eligibility for certain actions or claims.\r\n     *      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.\r\n     *\r\n     * @param user The address of the user whose score is being queried.\r\n     * @param scoreType The type of score to query, represented as a `bytes32` hash.\r\n     * @return The score of the user as a uint256 value.\r\n     * @notice This function should be implemented in the contract that inherits the `IScorer` interface.\r\n     */\r\n    function score(address user, bytes32 scoreType) external view returns (uint256);\r\n}\r\n"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"contracts": {
+			"contracts/interface/IScorer.sol": {
+				"IScorer": {
+					"abi": [
+						{
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "user",
+									"type": "address"
+								},
+								{
+									"internalType": "bytes32",
+									"name": "scoreType",
+									"type": "bytes32"
+								}
+							],
+							"name": "score",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						}
+					],
+					"devdoc": {
+						"kind": "dev",
+						"methods": {
+							"score(address,bytes32)": {
+								"details": "Returns the score of a specific user for a given score type.      The score type is represented as a `bytes32` hash (e.g., keccak256(\"Trust\")).      The score is typically used to determine the user's eligibility for certain actions or claims.      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.",
+								"params": {
+									"scoreType": "The type of score to query, represented as a `bytes32` hash.",
+									"user": "The address of the user whose score is being queried."
+								},
+								"returns": {
+									"_0": "The score of the user as a uint256 value."
+								}
+							}
+						},
+						"version": 1
+					},
+					"evm": {
+						"assembly": "",
+						"bytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"deployedBytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"immutableReferences": {},
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"gasEstimates": null,
+						"legacyAssembly": null,
+						"methodIdentifiers": {
+							"score(address,bytes32)": "faa5e295"
+						}
+					},
+					"metadata": "{\"compiler\":{\"version\":\"0.8.26+commit.8a97fa7a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"scoreType\",\"type\":\"bytes32\"}],\"name\":\"score\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"score(address,bytes32)\":{\"details\":\"Returns the score of a specific user for a given score type.      The score type is represented as a `bytes32` hash (e.g., keccak256(\\\"Trust\\\")).      The score is typically used to determine the user's eligibility for certain actions or claims.      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.\",\"params\":{\"scoreType\":\"The type of score to query, represented as a `bytes32` hash.\",\"user\":\"The address of the user whose score is being queried.\"},\"returns\":{\"_0\":\"The score of the user as a uint256 value.\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"score(address,bytes32)\":{\"notice\":\"This function should be implemented in the contract that inherits the `IScorer` interface.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/interface/IScorer.sol\":\"IScorer\"},\"evmVersion\":\"cancun\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/interface/IScorer.sol\":{\"keccak256\":\"0x72245ac02449dc17a198e4655857149556848c52c4fe2c8a587a80fc0d251fe8\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://385b0a96e2341060b47a7112c26b080b5c41d219188924e5ffd918e1430c6629\",\"dweb:/ipfs/QmX47sC6zdohNDvwekZ8jRAZcxKJwTrUVhzcTjGibHMxro\"]}},\"version\":1}",
+					"storageLayout": {
+						"storage": [],
+						"types": null
+					},
+					"userdoc": {
+						"kind": "user",
+						"methods": {
+							"score(address,bytes32)": {
+								"notice": "This function should be implemented in the contract that inherits the `IScorer` interface."
+							}
+						},
+						"version": 1
+					}
+				}
+			}
+		},
+		"sources": {
+			"contracts/interface/IScorer.sol": {
+				"ast": {
+					"absolutePath": "contracts/interface/IScorer.sol",
+					"exportedSymbols": {
+						"IScorer": [
+							12
+						]
+					},
+					"id": 13,
+					"license": "MIT",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"^",
+								"0.8",
+								".17"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "33:24:0"
+						},
+						{
+							"abstract": false,
+							"baseContracts": [],
+							"canonicalName": "IScorer",
+							"contractDependencies": [],
+							"contractKind": "interface",
+							"fullyImplemented": false,
+							"id": 12,
+							"linearizedBaseContracts": [
+								12
+							],
+							"name": "IScorer",
+							"nameLocation": "71:7:0",
+							"nodeType": "ContractDefinition",
+							"nodes": [
+								{
+									"documentation": {
+										"id": 2,
+										"nodeType": "StructuredDocumentation",
+										"src": "86:741:0",
+										"text": " @dev Returns the score of a specific user for a given score type.\n      The score type is represented as a `bytes32` hash (e.g., keccak256(\"Trust\")).\n      The score is typically used to determine the user's eligibility for certain actions or claims.\n      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.\n @param user The address of the user whose score is being queried.\n @param scoreType The type of score to query, represented as a `bytes32` hash.\n @return The score of the user as a uint256 value.\n @notice This function should be implemented in the contract that inherits the `IScorer` interface."
+									},
+									"functionSelector": "faa5e295",
+									"id": 11,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "score",
+									"nameLocation": "842:5:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 7,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 4,
+												"mutability": "mutable",
+												"name": "user",
+												"nameLocation": "856:4:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 11,
+												"src": "848:12:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 3,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "848:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 6,
+												"mutability": "mutable",
+												"name": "scoreType",
+												"nameLocation": "870:9:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 11,
+												"src": "862:17:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bytes32",
+													"typeString": "bytes32"
+												},
+												"typeName": {
+													"id": 5,
+													"name": "bytes32",
+													"nodeType": "ElementaryTypeName",
+													"src": "862:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bytes32",
+														"typeString": "bytes32"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "847:33:0"
+									},
+									"returnParameters": {
+										"id": 10,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 9,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 11,
+												"src": "904:7:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 8,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "904:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "903:9:0"
+									},
+									"scope": 12,
+									"src": "833:80:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								}
+							],
+							"scope": 13,
+							"src": "61:855:0",
+							"usedErrors": [],
+							"usedEvents": []
+						}
+					],
+					"src": "33:885:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}

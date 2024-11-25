@@ -49,7 +49,7 @@
 		},
 		"gasEstimates": null,
 		"methodIdentifiers": {
-			"score(address)": "776f3843"
+			"score(address,bytes32)": "faa5e295"
 		}
 	},
 	"abi": [
@@ -59,6 +59,11 @@
 					"internalType": "address",
 					"name": "user",
 					"type": "address"
+				},
+				{
+					"internalType": "bytes32",
+					"name": "scoreType",
+					"type": "bytes32"
 				}
 			],
 			"name": "score",

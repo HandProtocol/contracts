@@ -8,117 +8,120 @@ import "./interface/IScorer.sol"; // Import the IScorer interface
 
 contract nCookieJar is OwnableUpgradeable {
     using SafeERC20 for IERC20;
-    address public token; // Address of USDGLO or address(0) for ETH
-    IScorer public scorer; // Scoring contract for eligibility
-    uint256 public dailyLimit; // Limit per user per day
-    uint256 public totalBalance; // Total balance in the jar
-    uint256 public scoreRequired; // Minimum score required to claim
-    mapping(address => uint256) public lastClaimed; // Tracks last claim time for users
 
-    event Deposit(address indexed depositor, uint256 amount);
-    event Claimed(address indexed claimant, uint256 amount);
-    event UpdatedDailyLimit(uint256 newLimit);
-    event UpdatedScoreRequired(uint256 newScoreRequired);
+    address public constant ETHER = address(0); // Placeholder for Ether
+    IScorer public scorer; // Scoring contract for eligibility
+
+    struct Round {
+        uint256 start; // Start timestamp of the round
+        uint256 end; // End timestamp of the round
+        string metadataURI; // IPFS URI for round metadata
+    }
+
+    Round public currentRound; // Current round details
+
+    // Tracks balances for each token (including Ether)
+    mapping(address => uint256) public totalBalances;
+    // Allowed amounts per user per token
+    mapping(address => mapping(address => uint256)) public allowedAmounts;
+
+    event Deposit(address indexed depositor, address indexed token, uint256 amount);
+    event Claimed(address indexed claimant, address indexed token, uint256 amount);
+    event AllowedAmountUpdated(address indexed user, address indexed token, uint256 newAmount);
+    event RoundUpdated(uint256 start, uint256 end, string metadataURI);
 
     /// @notice Initializes this contract with its initial state.
     ///
-    /// @dev This is a special initialization phase where external calls are not allowed,
-    /// and it can be called only once at instance creation time.
-    function initialize(
-        address _token,
-        address _scorer,
-        uint256 _dailyLimit,
-        address owner,
-        uint256 _scoreRequired
-    ) external initializer {
+    /// @param _scorer The scoring contract address.
+    /// @param owner The owner address.
+    function initialize(address _scorer, address owner) external initializer {
         __Ownable_init(owner); // Initialize OwnableUpgradeable
-
-        token = _token;
         scorer = IScorer(_scorer);
-        dailyLimit = _dailyLimit;
-        scoreRequired = _scoreRequired;
     }
 
-    /// @notice Deposits funds into this jar.
+    /// @notice Deposits funds into this jar for a specific token or Ether.
     ///
-    /// @dev This can be either ETH or a specific token, depending on what's set in token.
-    ///
-    /// @param amount The value to add (in wei for ETH).
-    function deposit(uint256 amount) external payable {
-        if (token == address(0)) {
-            // ETH deposit
-            require(msg.value == amount, "Incorrect ETH amount");
+    /// @param token The token address (address(0) for Ether).
+    /// @param amount The value to add (in wei for Ether).
+    function deposit(address token, uint256 amount) external payable {
+        if (token == ETHER) {
+            require(msg.value == amount, "Incorrect Ether amount");
         } else {
-            // Token deposit
-            IERC20(token).transferFrom(msg.sender, address(this), amount);
-        }
-        totalBalance += amount;
-        emit Deposit(msg.sender, amount);
-    }
-
-    /**
-     * @dev Allows users to claim a specified amount of funds from the contract.
-     *      The claim is subject to the following conditions:
-     *      - The amount claimed cannot exceed the daily limit (`dailyLimit`).
-     *      - The user can only claim once every 24 hours, enforced by `lastClaimed`.
-     *      - The user must have a score that meets or exceeds the required score (`scoreRequired`).
-     *      - The contract must have enough funds to fulfill the claim.
-     *
-     * @param amount The amount of funds the user wishes to claim.
-     * @notice Emits a `Claimed` event when the claim is successful.
-     * @notice The function supports both ETH and ERC20 token claims. The behavior is based on whether `token` is set to `address(0)` (ETH).
-     */
-    function claim(uint256 amount) external {
-        require(amount <= dailyLimit, "Exceeds daily limit");
-        require(block.timestamp - lastClaimed[msg.sender] >= 1 days, "Daily claim limit reached");
-        require(scorer.score(msg.sender) >= scoreRequired, "Score too low");
-        require(amount <= totalBalance, "Insufficient funds in jar");
-
-        lastClaimed[msg.sender] = block.timestamp;
-        totalBalance -= amount;
-
-        if (token == address(0)) {
-            // Send ETH
-            (bool success, ) = msg.sender.call{value: amount}("");
-            require(success, "ETH transfer failed");
-        } else {
-            // Send token
-            IERC20(token).transfer(msg.sender, amount);
+            require(amount > 0, "Deposit amount must be greater than zero");
+            IERC20(token).safeTransferFrom(msg.sender, address(this), amount);
         }
 
-        emit Claimed(msg.sender, amount);
+        totalBalances[token] += amount;
+        emit Deposit(msg.sender, token, amount);
     }
 
-    function updateDailyLimit(uint256 newLimit) external onlyOwner {
-        dailyLimit = newLimit;
-        emit UpdatedDailyLimit(newLimit);
+    /// @notice Claims the full allowed amount for a user during the round.
+    function claim(address token) external {
+        require(block.timestamp >= currentRound.start && block.timestamp <= currentRound.end, "Not within round duration");
+
+        uint256 userAllowedAmount = allowedAmounts[msg.sender][token];
+        require(userAllowedAmount > 0, "No claimable amount");
+        require(totalBalances[token] >= userAllowedAmount, "Insufficient funds in jar");
+
+        // Check the user's Trust score from the scorer
+        bytes32 trustKey = keccak256("Trust");
+        require(scorer.score(msg.sender, trustKey) > 0, "Insufficient Trust score");
+
+        allowedAmounts[msg.sender][token] = 0;
+        totalBalances[token] -= userAllowedAmount;
+
+        if (token == ETHER) {
+            (bool success, ) = msg.sender.call{value: userAllowedAmount}("");
+            require(success, "Ether transfer failed");
+        } else {
+            IERC20(token).safeTransfer(msg.sender, userAllowedAmount);
+        }
+
+        emit Claimed(msg.sender, token, userAllowedAmount);
     }
 
-    function setScoreRequired(uint256 newScoreRequired) external onlyOwner {
-        scoreRequired = newScoreRequired;
-        emit UpdatedScoreRequired(newScoreRequired);
+    /// @notice Sets the allowed amount for a specific user and token.
+    ///
+    /// @param user The address of the user.
+    /// @param token The token address.
+    /// @param amount The allowed amount for the user.
+    function setAllowedAmount(address user, address token, uint256 amount) external onlyOwner {
+        allowedAmounts[user][token] = amount;
+        emit AllowedAmountUpdated(user, token, amount);
     }
 
-    function withdraw(uint256 amount) external onlyOwner {
-        require(amount <= totalBalance, "Insufficient funds");
+    /// @notice Sets the round duration and metadata URI.
+    ///
+    /// @param start The start timestamp of the round.
+    /// @param end The end timestamp of the round.
+    /// @param metadataURI The IPFS URI for the round metadata.
+    function setRound(uint256 start, uint256 end, string memory metadataURI) external onlyOwner {
+        require(start < end, "Start time must be before end time");
+        currentRound = Round(start, end, metadataURI);
+        emit RoundUpdated(start, end, metadataURI);
+    }
 
-        totalBalance -= amount;
-        if (token == address(0)) {
-            // Withdraw ETH
+    /// @notice Withdraws funds from the jar for a specific token or Ether.
+    ///
+    /// @param token The token address (address(0) for Ether).
+    /// @param amount The amount to withdraw.
+    function withdraw(address token, uint256 amount) external onlyOwner {
+        require(amount > 0, "Withdrawal amount must be greater than zero");
+        require(totalBalances[token] >= amount, "Insufficient funds");
+
+        totalBalances[token] -= amount;
+
+        if (token == ETHER) {
             (bool success, ) = owner().call{value: amount}("");
-            require(success, "ETH transfer failed");
+            require(success, "Ether transfer failed");
         } else {
-            // Withdraw token
-            IERC20(token).transfer(owner(), amount);
+            IERC20(token).safeTransfer(owner(), amount);
         }
     }
 
-    function setScorer(address _scorer) external onlyOwner {
-        scorer = IScorer(_scorer);
-    }
-
+    /// @notice Allows Ether deposits directly via fallback function.
     receive() external payable {
-        totalBalance += msg.value;
-        emit Deposit(msg.sender, msg.value);
+        totalBalances[ETHER] += msg.value;
+        emit Deposit(msg.sender, ETHER, msg.value);
     }
 }
