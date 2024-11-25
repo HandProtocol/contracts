@@ -11,7 +11,7 @@ The `nCookieJar` contract allows users to deposit ERC20 tokens or Ether into the
 The `Scorer` contract manages the scoring system that determines eligibility for claiming funds from the `nCookieJar`. It allows admins to set and manage user scores, and defines score types for various purposes (e.g., Trust score).
 
 ## Directory Structure
-- `/contracts`: Contains all Solidity contracts.
-  - `/cookie-jar.md`: Readme for the `nCookieJar` contract.
-  - `/scorer.md`: Readme for the `Scorer` contract.
+- [contracts](/contracts): Contains all Solidity contracts.
+  - [contract/cookie-jar.md](/contracts/cookie-jar.md): Readme for the `nCookieJar` contract.
+  - [contract/scorer.md](/contracts/scorer.md): Readme for the `Scorer` contract.
   
