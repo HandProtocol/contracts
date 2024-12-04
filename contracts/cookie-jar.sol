@@ -64,9 +64,7 @@ contract nCookieJar is OwnableUpgradeable {
         require(userAllowedAmount > 0, "No claimable amount");
         require(totalBalances[token] >= userAllowedAmount, "Insufficient funds in jar");
 
-        // Check the user's Trust score from the scorer
-        bytes32 trustKey = keccak256("Trust");
-        require(scorer.score(msg.sender, trustKey) > 0, "Insufficient Trust score");
+        require(scorer.score(msg.sender, "Trust") > 0, "Insufficient Trust score");
 
         allowedAmounts[msg.sender][token] = 0;
         totalBalances[token] -= userAllowedAmount;
