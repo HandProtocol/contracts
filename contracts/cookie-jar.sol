@@ -26,6 +26,7 @@ contract nCookieJar is OwnableUpgradeable {
     mapping(address => mapping(address => uint256)) public allowedAmounts;
 
     event Deposit(address indexed depositor, address indexed token, uint256 amount);
+    event Withdraw(address indexed withdrawer, address indexed token, uint256 amount);
     event Claimed(address indexed claimant, address indexed token, uint256 amount);
     event AllowedAmountUpdated(address indexed user, address indexed token, uint256 newAmount);
     event RoundUpdated(uint256 start, uint256 end, string metadataURI);
@@ -117,6 +118,7 @@ contract nCookieJar is OwnableUpgradeable {
         } else {
             IERC20(token).safeTransfer(owner(), amount);
         }
+        emit Withdraw(owner(), token, amount);
     }
 
     /// @notice Allows Ether deposits directly via fallback function.

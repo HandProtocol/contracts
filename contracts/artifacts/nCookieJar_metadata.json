@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.26+commit.8a97fa7a"
+		"version": "0.8.28+commit.7893614a"
 	},
 	"language": "Solidity",
 	"output": {
@@ -178,6 +178,31 @@
 					}
 				],
 				"name": "RoundUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "withdrawer",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Withdraw",
 				"type": "event"
 			},
 			{
@@ -632,11 +657,11 @@
 			]
 		},
 		"contracts/cookie-jar.sol": {
-			"keccak256": "0x6d8d87dbda93ae90caab4bed52fcf722135b6f4ad9c465fb83e7beb1939e34d8",
+			"keccak256": "0x61176a5fb06b818380a6cb945ec4fbebf093db58841dab10589b3938bf8a3ffe",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b89dc91937cda36a26e6fd9176b3d491f704c57f093f22657151f29f2e19d6b2",
-				"dweb:/ipfs/QmU6XzBk3dcD8wyRzGeoZQCauKCVW9EQKfiNyDprKQTb7r"
+				"bzz-raw://2fca356d1ec14cbdb7ffa472dbde29342a30d77f5cb80cd723eba247f3c7c415",
+				"dweb:/ipfs/QmbpbzjKEe3mjp3H3YHcwVrhfwCQQQ6FXFHLFTWKpmvBED"
 			]
 		},
 		"contracts/interface/IScorer.sol": {
