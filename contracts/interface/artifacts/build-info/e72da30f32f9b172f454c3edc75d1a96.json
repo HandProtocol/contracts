@@ -1,13 +1,13 @@
 {
-	"id": "044b1c15358fca186bab8ffbb7f7e48c",
+	"id": "e72da30f32f9b172f454c3edc75d1a96",
 	"_format": "hh-sol-build-info-1",
-	"solcVersion": "0.8.26",
-	"solcLongVersion": "0.8.26+commit.8a97fa7a",
+	"solcVersion": "0.8.28",
+	"solcLongVersion": "0.8.28+commit.7893614a",
 	"input": {
 		"language": "Solidity",
 		"sources": {
 			"contracts/interface/IScorer.sol": {
-				"content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.17;\r\n\r\ninterface IScorer {\r\n    /**\r\n     * @dev Returns the score of a specific user for a given score type.\r\n     *      The score type is represented as a `bytes32` hash (e.g., keccak256(\"Trust\")).\r\n     *      The score is typically used to determine the user's eligibility for certain actions or claims.\r\n     *      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.\r\n     *\r\n     * @param user The address of the user whose score is being queried.\r\n     * @param scoreType The type of score to query, represented as a `bytes32` hash.\r\n     * @return The score of the user as a uint256 value.\r\n     * @notice This function should be implemented in the contract that inherits the `IScorer` interface.\r\n     */\r\n    function score(address user, bytes32 scoreType) external view returns (uint256);\r\n}\r\n"
+				"content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.17;\r\n\r\ninterface IScorer {\r\n    /**\r\n     * @dev Returns the score of a specific user for a given score type.\r\n     *      The score type is represented as a `bytes32` hash (e.g., keccak256(\"Trust\")).\r\n     *      The score is typically used to determine the user's eligibility for certain actions or claims.\r\n     *      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.\r\n     *\r\n     * @param user The address of the user whose score is being queried.\r\n     * @param scoreType The type of score to query, represented as a `bytes32` hash.\r\n     * @return The score of the user as a uint256 value.\r\n     * @notice This function should be implemented in the contract that inherits the `IScorer` interface.\r\n     */\r\n    function score(address user, string memory scoreType) external view returns (uint256);\r\n}\r\n"
 			}
 		},
 		"settings": {
@@ -51,9 +51,9 @@
 									"type": "address"
 								},
 								{
-									"internalType": "bytes32",
+									"internalType": "string",
 									"name": "scoreType",
-									"type": "bytes32"
+									"type": "string"
 								}
 							],
 							"name": "score",
@@ -71,7 +71,7 @@
 					"devdoc": {
 						"kind": "dev",
 						"methods": {
-							"score(address,bytes32)": {
+							"score(address,string)": {
 								"details": "Returns the score of a specific user for a given score type.      The score type is represented as a `bytes32` hash (e.g., keccak256(\"Trust\")).      The score is typically used to determine the user's eligibility for certain actions or claims.      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.",
 								"params": {
 									"scoreType": "The type of score to query, represented as a `bytes32` hash.",
@@ -106,10 +106,10 @@
 						"gasEstimates": null,
 						"legacyAssembly": null,
 						"methodIdentifiers": {
-							"score(address,bytes32)": "faa5e295"
+							"score(address,string)": "db4f1024"
 						}
 					},
-					"metadata": "{\"compiler\":{\"version\":\"0.8.26+commit.8a97fa7a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"scoreType\",\"type\":\"bytes32\"}],\"name\":\"score\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"score(address,bytes32)\":{\"details\":\"Returns the score of a specific user for a given score type.      The score type is represented as a `bytes32` hash (e.g., keccak256(\\\"Trust\\\")).      The score is typically used to determine the user's eligibility for certain actions or claims.      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.\",\"params\":{\"scoreType\":\"The type of score to query, represented as a `bytes32` hash.\",\"user\":\"The address of the user whose score is being queried.\"},\"returns\":{\"_0\":\"The score of the user as a uint256 value.\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"score(address,bytes32)\":{\"notice\":\"This function should be implemented in the contract that inherits the `IScorer` interface.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/interface/IScorer.sol\":\"IScorer\"},\"evmVersion\":\"cancun\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/interface/IScorer.sol\":{\"keccak256\":\"0x72245ac02449dc17a198e4655857149556848c52c4fe2c8a587a80fc0d251fe8\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://385b0a96e2341060b47a7112c26b080b5c41d219188924e5ffd918e1430c6629\",\"dweb:/ipfs/QmX47sC6zdohNDvwekZ8jRAZcxKJwTrUVhzcTjGibHMxro\"]}},\"version\":1}",
+					"metadata": "{\"compiler\":{\"version\":\"0.8.28+commit.7893614a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"scoreType\",\"type\":\"string\"}],\"name\":\"score\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"score(address,string)\":{\"details\":\"Returns the score of a specific user for a given score type.      The score type is represented as a `bytes32` hash (e.g., keccak256(\\\"Trust\\\")).      The score is typically used to determine the user's eligibility for certain actions or claims.      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.\",\"params\":{\"scoreType\":\"The type of score to query, represented as a `bytes32` hash.\",\"user\":\"The address of the user whose score is being queried.\"},\"returns\":{\"_0\":\"The score of the user as a uint256 value.\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"score(address,string)\":{\"notice\":\"This function should be implemented in the contract that inherits the `IScorer` interface.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/interface/IScorer.sol\":\"IScorer\"},\"evmVersion\":\"cancun\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/interface/IScorer.sol\":{\"keccak256\":\"0xa0801b8686b542142fa3a46bb249a3cfbf1b02d5dae8b422384aa61cc6833f15\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://51c0490624c39104573774d764c694e0dc429a38b737e398035439fa4ecc1280\",\"dweb:/ipfs/QmTdXMcUJMRzh34HweyJhGsFnweTWGFvoWPaxUcvaPBted\"]}},\"version\":1}",
 					"storageLayout": {
 						"storage": [],
 						"types": null
@@ -117,7 +117,7 @@
 					"userdoc": {
 						"kind": "user",
 						"methods": {
-							"score(address,bytes32)": {
+							"score(address,string)": {
 								"notice": "This function should be implemented in the contract that inherits the `IScorer` interface."
 							}
 						},
@@ -172,7 +172,7 @@
 										"src": "86:741:0",
 										"text": " @dev Returns the score of a specific user for a given score type.\n      The score type is represented as a `bytes32` hash (e.g., keccak256(\"Trust\")).\n      The score is typically used to determine the user's eligibility for certain actions or claims.\n      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.\n @param user The address of the user whose score is being queried.\n @param scoreType The type of score to query, represented as a `bytes32` hash.\n @return The score of the user as a uint256 value.\n @notice This function should be implemented in the contract that inherits the `IScorer` interface."
 									},
-									"functionSelector": "faa5e295",
+									"functionSelector": "db4f1024",
 									"id": 11,
 									"implemented": false,
 									"kind": "function",
@@ -217,30 +217,30 @@
 												"id": 6,
 												"mutability": "mutable",
 												"name": "scoreType",
-												"nameLocation": "870:9:0",
+												"nameLocation": "876:9:0",
 												"nodeType": "VariableDeclaration",
 												"scope": 11,
-												"src": "862:17:0",
+												"src": "862:23:0",
 												"stateVariable": false,
-												"storageLocation": "default",
+												"storageLocation": "memory",
 												"typeDescriptions": {
-													"typeIdentifier": "t_bytes32",
-													"typeString": "bytes32"
+													"typeIdentifier": "t_string_memory_ptr",
+													"typeString": "string"
 												},
 												"typeName": {
 													"id": 5,
-													"name": "bytes32",
+													"name": "string",
 													"nodeType": "ElementaryTypeName",
-													"src": "862:7:0",
+													"src": "862:6:0",
 													"typeDescriptions": {
-														"typeIdentifier": "t_bytes32",
-														"typeString": "bytes32"
+														"typeIdentifier": "t_string_storage_ptr",
+														"typeString": "string"
 													}
 												},
 												"visibility": "internal"
 											}
 										],
-										"src": "847:33:0"
+										"src": "847:39:0"
 									},
 									"returnParameters": {
 										"id": 10,
@@ -254,7 +254,7 @@
 												"nameLocation": "-1:-1:-1",
 												"nodeType": "VariableDeclaration",
 												"scope": 11,
-												"src": "904:7:0",
+												"src": "910:7:0",
 												"stateVariable": false,
 												"storageLocation": "default",
 												"typeDescriptions": {
@@ -265,7 +265,7 @@
 													"id": 8,
 													"name": "uint256",
 													"nodeType": "ElementaryTypeName",
-													"src": "904:7:0",
+													"src": "910:7:0",
 													"typeDescriptions": {
 														"typeIdentifier": "t_uint256",
 														"typeString": "uint256"
@@ -274,22 +274,22 @@
 												"visibility": "internal"
 											}
 										],
-										"src": "903:9:0"
+										"src": "909:9:0"
 									},
 									"scope": 12,
-									"src": "833:80:0",
+									"src": "833:86:0",
 									"stateMutability": "view",
 									"virtual": false,
 									"visibility": "external"
 								}
 							],
 							"scope": 13,
-							"src": "61:855:0",
+							"src": "61:861:0",
 							"usedErrors": [],
 							"usedEvents": []
 						}
 					],
-					"src": "33:885:0"
+					"src": "33:891:0"
 				},
 				"id": 0
 			}

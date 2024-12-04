@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.26+commit.8a97fa7a"
+		"version": "0.8.28+commit.7893614a"
 	},
 	"language": "Solidity",
 	"output": {
@@ -13,9 +13,9 @@
 						"type": "address"
 					},
 					{
-						"internalType": "bytes32",
+						"internalType": "string",
 						"name": "scoreType",
-						"type": "bytes32"
+						"type": "string"
 					}
 				],
 				"name": "score",
@@ -33,7 +33,7 @@
 		"devdoc": {
 			"kind": "dev",
 			"methods": {
-				"score(address,bytes32)": {
+				"score(address,string)": {
 					"details": "Returns the score of a specific user for a given score type.      The score type is represented as a `bytes32` hash (e.g., keccak256(\"Trust\")).      The score is typically used to determine the user's eligibility for certain actions or claims.      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.",
 					"params": {
 						"scoreType": "The type of score to query, represented as a `bytes32` hash.",
@@ -49,7 +49,7 @@
 		"userdoc": {
 			"kind": "user",
 			"methods": {
-				"score(address,bytes32)": {
+				"score(address,string)": {
 					"notice": "This function should be implemented in the contract that inherits the `IScorer` interface."
 				}
 			},
@@ -73,11 +73,11 @@
 	},
 	"sources": {
 		"contracts/interface/IScorer.sol": {
-			"keccak256": "0x72245ac02449dc17a198e4655857149556848c52c4fe2c8a587a80fc0d251fe8",
+			"keccak256": "0xa0801b8686b542142fa3a46bb249a3cfbf1b02d5dae8b422384aa61cc6833f15",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://385b0a96e2341060b47a7112c26b080b5c41d219188924e5ffd918e1430c6629",
-				"dweb:/ipfs/QmX47sC6zdohNDvwekZ8jRAZcxKJwTrUVhzcTjGibHMxro"
+				"bzz-raw://51c0490624c39104573774d764c694e0dc429a38b737e398035439fa4ecc1280",
+				"dweb:/ipfs/QmTdXMcUJMRzh34HweyJhGsFnweTWGFvoWPaxUcvaPBted"
 			]
 		}
 	},

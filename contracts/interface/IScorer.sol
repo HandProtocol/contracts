@@ -13,5 +13,5 @@ interface IScorer {
      * @return The score of the user as a uint256 value.
      * @notice This function should be implemented in the contract that inherits the `IScorer` interface.
      */
-    function score(address user, bytes32 scoreType) external view returns (uint256);
+    function score(address user, string memory scoreType) external view returns (uint256);
 }
