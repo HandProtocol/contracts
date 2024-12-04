@@ -1,15 +1,17 @@
-# Hand Protocol Contract
+# nCookieJar & Scorer Contracts
 
-## Cookie Jar & Scorer
+This repository contains the smart contracts for the **nCookieJar** and **Scorer**. These contracts provide functionality for managing token deposits and claims, integrating scoring mechanisms for eligibility, and supporting round-based deposit/claim systems.
 
-1. Role-based Access: Admins can set scores, while the contract owner controls admin roles and the jar’s parameters.
-2. Score-based Eligibility: Only users with a score above a minimum threshold can claim funds from the jar.
-3. Deposits and Withdrawals: Both ETH and ERC20 tokens can be deposited into the jar, and funds can be claimed by eligible users.
-4. Claim Limits: Each user can only claim up to a daily limit and only once per day.
-5. Flexible Fund Management: The owner can manage both the daily limit and minimum score for claims, as well as withdraw funds from the jar if needed.
-6. Tracking and Events: Events are emitted for deposits, claims, and updates to daily limits and score requirements, making it easy to track all actions.
+## Contracts Overview
 
-## WIP & Deployed Contracts 
+### nCookieJar Contract
+The `nCookieJar` contract allows users to deposit ERC20 tokens or Ether into the contract, with a mechanism to claim funds based on eligibility scores determined by the `Scorer` contract. It also supports round-based logic to manage claims within specific time windows.
 
-* Scorer Contract : [https://sepolia.arbiscan.io/address/0x5aea83d3c2837832fcb12703bc677549bdbeb9a7](https://testnet.routescan.io/address/0x5aea83D3C2837832fCb12703Bc677549bdBeb9A7/contract/421614/writeContract?chainid=421614)
-* Cookie Jar Contract : [https://sepolia.arbiscan.io/address/0xbc6043be52c675b3d465d60a1f7b7b951a3ff343](https://testnet.routescan.io/address/0xBC6043bE52c675b3d465D60a1f7b7b951A3fF343/contract/421614/readContract?chainid=421614)
+### Scorer Contract
+The `Scorer` contract manages the scoring system that determines eligibility for claiming funds from the `nCookieJar`. It allows admins to set and manage user scores, and defines score types for various purposes (e.g., Trust score).
+
+## Directory Structure
+- [contracts](/contracts): Contains all Solidity contracts.
+  - [contract/cookie-jar.md](/contracts/cookie-jar.md): Readme for the `nCookieJar` contract.
+  - [contract/scorer.md](/contracts/scorer.md): Readme for the `Scorer` contract.
+  

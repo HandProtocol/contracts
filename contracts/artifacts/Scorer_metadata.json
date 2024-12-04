@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.26+commit.8a97fa7a"
+		"version": "0.8.28+commit.7893614a"
 	},
 	"language": "Solidity",
 	"output": {
@@ -195,6 +195,32 @@
 				"anonymous": false,
 				"inputs": [
 					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "scoreType",
+						"type": "string"
+					}
+				],
+				"name": "ScoreTypeAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "scoreType",
+						"type": "string"
+					}
+				],
+				"name": "ScoreTypeRemoved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
 						"indexed": true,
 						"internalType": "address",
 						"name": "user",
@@ -202,8 +228,20 @@
 					},
 					{
 						"indexed": false,
+						"internalType": "string",
+						"name": "scoreType",
+						"type": "string"
+					},
+					{
+						"indexed": false,
 						"internalType": "uint256",
 						"name": "newScore",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "oldScore",
 						"type": "uint256"
 					}
 				],
@@ -245,6 +283,19 @@
 					}
 				],
 				"name": "addAdmin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "scoreType",
+						"type": "string"
+					}
+				],
+				"name": "addScoreType",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -369,6 +420,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "scoreType",
+						"type": "string"
+					}
+				],
+				"name": "removeScoreType",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "renounceOwnership",
 				"outputs": [],
@@ -417,6 +481,11 @@
 						"internalType": "address",
 						"name": "user",
 						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "scoreType",
+						"type": "string"
 					}
 				],
 				"name": "score",
@@ -433,9 +502,33 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "scoreTypes",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "user",
 						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "scoreType",
+						"type": "string"
 					},
 					{
 						"internalType": "uint256",
@@ -530,6 +623,11 @@
 			},
 			"kind": "dev",
 			"methods": {
+				"addScoreType(string)": {
+					"params": {
+						"scoreType": "The name of the score type to add."
+					}
+				},
 				"getRoleAdmin(bytes32)": {
 					"details": "Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}."
 				},
@@ -539,8 +637,18 @@
 				"hasRole(bytes32,address)": {
 					"details": "Returns `true` if `account` has been granted `role`."
 				},
+				"initialize(address)": {
+					"params": {
+						"owner": "The owner address."
+					}
+				},
 				"owner()": {
 					"details": "Returns the address of the current owner."
+				},
+				"removeScoreType(string)": {
+					"params": {
+						"scoreType": "The name of the score type to remove."
+					}
 				},
 				"renounceOwnership()": {
 					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
@@ -551,13 +659,20 @@
 				"revokeRole(bytes32,address)": {
 					"details": "Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleRevoked} event."
 				},
-				"score(address)": {
-					"details": "Returns the score of a specific user.      The score is typically used to determine the user's eligibility for certain actions or claims.      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.",
+				"score(address,string)": {
 					"params": {
-						"user": "The address of the user whose score is being queried."
+						"scoreType": "The type of the score.",
+						"user": "The address of the user."
 					},
 					"returns": {
-						"_0": "The score of the user as a uint256 value."
+						"_0": "The score value for the user and type."
+					}
+				},
+				"setScore(address,string,uint256)": {
+					"params": {
+						"newScore": "The new score value.",
+						"scoreType": "The type of the score.",
+						"user": "The address of the user."
 					}
 				},
 				"supportsInterface(bytes4)": {
@@ -572,11 +687,20 @@
 		"userdoc": {
 			"kind": "user",
 			"methods": {
-				"initialize(address)": {
-					"notice": "Initialize this contract by setting up its initial state. This is a special initialization phase where external calls are not allowed, and it can only be called once at instance creation time. It sets the deployer as both owner and admin, granting them necessary permissions."
+				"addScoreType(string)": {
+					"notice": "Adds a new score type."
 				},
-				"score(address)": {
-					"notice": "This function should be implemented in the contract that inherits the `IScorer` interface."
+				"initialize(address)": {
+					"notice": "Initializes the contract by setting up its initial state."
+				},
+				"removeScoreType(string)": {
+					"notice": "Removes an existing score type."
+				},
+				"score(address,string)": {
+					"notice": "Retrieves the score of a specific user for a given type."
+				},
+				"setScore(address,string,uint256)": {
+					"notice": "Sets the score for a specific user and type."
 				}
 			},
 			"version": 1
@@ -655,11 +779,11 @@
 			]
 		},
 		"contracts/scorer.sol": {
-			"keccak256": "0x0522b332efc3eec8080c4510932ef02cfb744e04aa5ada8d1eb139d0f7580abc",
+			"keccak256": "0x599349c3533d3ad719244a45965d08aabff774dd7d08e56f6827582c99324570",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4d2261ff9d4692164aa43705582bf7e859fb191aef7b1316ff2028613bc34a99",
-				"dweb:/ipfs/QmbpN5tQcjdjNzVwv3pxHYuk2xNbCFhrX7rPo9Ry5VSLw9"
+				"bzz-raw://0fa6e945b1c8d887435c5e6eda709f7fa22efde501b0be039d8dd1d2345f6e3e",
+				"dweb:/ipfs/QmdCMCUgg7K86BesTUJifvFRxf925VjCRUK4jQzCmgQgY7"
 			]
 		}
 	},

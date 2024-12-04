@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.26+commit.8a97fa7a"
+		"version": "0.8.28+commit.7893614a"
 	},
 	"language": "Solidity",
 	"output": {
@@ -38,12 +38,54 @@
 				"type": "error"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					}
+				],
+				"name": "SafeERC20FailedOperation",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "AllowedAmountUpdated",
+				"type": "event"
+			},
+			{
 				"anonymous": false,
 				"inputs": [
 					{
 						"indexed": true,
 						"internalType": "address",
 						"name": "claimant",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "token",
 						"type": "address"
 					},
 					{
@@ -63,6 +105,12 @@
 						"indexed": true,
 						"internalType": "address",
 						"name": "depositor",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "token",
 						"type": "address"
 					},
 					{
@@ -113,42 +161,77 @@
 					{
 						"indexed": false,
 						"internalType": "uint256",
-						"name": "newLimit",
+						"name": "start",
 						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "end",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "metadataURI",
+						"type": "string"
 					}
 				],
-				"name": "UpdatedDailyLimit",
+				"name": "RoundUpdated",
 				"type": "event"
 			},
 			{
 				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "newScoreRequired",
-						"type": "uint256"
-					}
-				],
-				"name": "UpdatedScoreRequired",
-				"type": "event"
-			},
-			{
-				"inputs": [
+						"indexed": true,
+						"internalType": "address",
+						"name": "withdrawer",
+						"type": "address"
+					},
 					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					},
+					{
+						"indexed": false,
 						"internalType": "uint256",
 						"name": "amount",
 						"type": "uint256"
 					}
 				],
-				"name": "claim",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
+				"name": "Withdraw",
+				"type": "event"
 			},
 			{
 				"inputs": [],
-				"name": "dailyLimit",
+				"name": "ETHER",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "allowedAmounts",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -161,6 +244,47 @@
 			},
 			{
 				"inputs": [
+					{
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					}
+				],
+				"name": "claim",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "currentRound",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "start",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "end",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "metadataURI",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					},
 					{
 						"internalType": "uint256",
 						"name": "amount",
@@ -176,52 +300,18 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_token",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
 						"name": "_scorer",
 						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_dailyLimit",
-						"type": "uint256"
 					},
 					{
 						"internalType": "address",
 						"name": "owner",
 						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_scoreRequired",
-						"type": "uint256"
 					}
 				],
 				"name": "initialize",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "lastClaimed",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -246,19 +336,6 @@
 			},
 			{
 				"inputs": [],
-				"name": "scoreRequired",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "scorer",
 				"outputs": [
 					{
@@ -273,12 +350,45 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					},
+					{
 						"internalType": "uint256",
-						"name": "newScoreRequired",
+						"name": "amount",
 						"type": "uint256"
 					}
 				],
-				"name": "setScoreRequired",
+				"name": "setAllowedAmount",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "start",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "end",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "metadataURI",
+						"type": "string"
+					}
+				],
+				"name": "setRound",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -287,31 +397,11 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_scorer",
-						"type": "address"
-					}
-				],
-				"name": "setScorer",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "token",
-				"outputs": [
-					{
-						"internalType": "address",
 						"name": "",
 						"type": "address"
 					}
 				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "totalBalance",
+				"name": "totalBalances",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -338,18 +428,10 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "newLimit",
-						"type": "uint256"
-					}
-				],
-				"name": "updateDailyLimit",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					},
 					{
 						"internalType": "uint256",
 						"name": "amount",
@@ -387,6 +469,11 @@
 					{
 						"details": "The caller account is not authorized to perform an operation."
 					}
+				],
+				"SafeERC20FailedOperation(address)": [
+					{
+						"details": "An operation with an ERC-20 token failed."
+					}
 				]
 			},
 			"events": {
@@ -396,20 +483,17 @@
 			},
 			"kind": "dev",
 			"methods": {
-				"claim(uint256)": {
-					"details": "Allows users to claim a specified amount of funds from the contract.      The claim is subject to the following conditions:      - The amount claimed cannot exceed the daily limit (`dailyLimit`).      - The user can only claim once every 24 hours, enforced by `lastClaimed`.      - The user must have a score that meets or exceeds the required score (`scoreRequired`).      - The contract must have enough funds to fulfill the claim.",
+				"deposit(address,uint256)": {
 					"params": {
-						"amount": "The amount of funds the user wishes to claim."
+						"amount": "The value to add (in wei for Ether).",
+						"token": "The token address (address(0) for Ether)."
 					}
 				},
-				"deposit(uint256)": {
-					"details": "This can be either ETH or a specific token, depending on what's set in token.",
+				"initialize(address,address)": {
 					"params": {
-						"amount": "The value to add (in wei for ETH)."
+						"_scorer": "The scoring contract address.",
+						"owner": "The owner address."
 					}
-				},
-				"initialize(address,address,uint256,address,uint256)": {
-					"details": "This is a special initialization phase where external calls are not allowed, and it can be called only once at instance creation time."
 				},
 				"owner()": {
 					"details": "Returns the address of the current owner."
@@ -417,8 +501,28 @@
 				"renounceOwnership()": {
 					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
 				},
+				"setAllowedAmount(address,address,uint256)": {
+					"params": {
+						"amount": "The allowed amount for the user.",
+						"token": "The token address.",
+						"user": "The address of the user."
+					}
+				},
+				"setRound(uint256,uint256,string)": {
+					"params": {
+						"end": "The end timestamp of the round.",
+						"metadataURI": "The IPFS URI for the round metadata.",
+						"start": "The start timestamp of the round."
+					}
+				},
 				"transferOwnership(address)": {
 					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				},
+				"withdraw(address,uint256)": {
+					"params": {
+						"amount": "The amount to withdraw.",
+						"token": "The token address (address(0) for Ether)."
+					}
 				}
 			},
 			"version": 1
@@ -426,14 +530,23 @@
 		"userdoc": {
 			"kind": "user",
 			"methods": {
-				"claim(uint256)": {
-					"notice": "Emits a `Claimed` event when the claim is successful.The function supports both ETH and ERC20 token claims. The behavior is based on whether `token` is set to `address(0)` (ETH)."
+				"claim(address)": {
+					"notice": "Claims the full allowed amount for a user during the round."
 				},
-				"deposit(uint256)": {
-					"notice": "Deposits funds into this jar."
+				"deposit(address,uint256)": {
+					"notice": "Deposits funds into this jar for a specific token or Ether."
 				},
-				"initialize(address,address,uint256,address,uint256)": {
+				"initialize(address,address)": {
 					"notice": "Initializes this contract with its initial state."
+				},
+				"setAllowedAmount(address,address,uint256)": {
+					"notice": "Sets the allowed amount for a specific user and token."
+				},
+				"setRound(uint256,uint256,string)": {
+					"notice": "Sets the round duration and metadata URI."
+				},
+				"withdraw(address,uint256)": {
+					"notice": "Withdraws funds from the jar for a specific token or Ether."
 				}
 			},
 			"version": 1
@@ -544,19 +657,19 @@
 			]
 		},
 		"contracts/cookie-jar.sol": {
-			"keccak256": "0xb5c58565add1508fc397ad2def28236b3c31e344ac868ec4b858a054498f5fc4",
+			"keccak256": "0x61176a5fb06b818380a6cb945ec4fbebf093db58841dab10589b3938bf8a3ffe",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0730a3e1f1e69652254244822772e2fc343a4e8411cc0bb8aef3e833357f32b8",
-				"dweb:/ipfs/QmUPHpsg2BbjZP1AoLspcgyYM1UiZnfDbTwLmV1h5ZrC9v"
+				"bzz-raw://2fca356d1ec14cbdb7ffa472dbde29342a30d77f5cb80cd723eba247f3c7c415",
+				"dweb:/ipfs/QmbpbzjKEe3mjp3H3YHcwVrhfwCQQQ6FXFHLFTWKpmvBED"
 			]
 		},
 		"contracts/interface/IScorer.sol": {
-			"keccak256": "0xc61939a802c0e9e2059f20e60a904aeb10fcba36654d64f5737e0da725b01839",
+			"keccak256": "0x72245ac02449dc17a198e4655857149556848c52c4fe2c8a587a80fc0d251fe8",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2fa7e4065063f4dba9c9066ed106399f63ff183149c6601646e56446187d0546",
-				"dweb:/ipfs/QmVHx5YbwoCXBB5iHyoAFVk72q7moyStfNbiKVyVLsrXSs"
+				"bzz-raw://385b0a96e2341060b47a7112c26b080b5c41d219188924e5ffd918e1430c6629",
+				"dweb:/ipfs/QmX47sC6zdohNDvwekZ8jRAZcxKJwTrUVhzcTjGibHMxro"
 			]
 		}
 	},
