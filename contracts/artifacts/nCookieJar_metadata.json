@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.28+commit.7893614a"
+		"version": "0.8.26+commit.8a97fa7a"
 	},
 	"language": "Solidity",
 	"output": {
@@ -657,19 +657,19 @@
 			]
 		},
 		"contracts/cookie-jar.sol": {
-			"keccak256": "0xbb538029c616140f4ef0cb4f92ae327171f1d9147dcc619ea0b422b0bf5aa2b3",
+			"keccak256": "0x86d794c457affbe49d3d55ee43030d589df142893035e922375eddc039f25ee1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d0cb5f6e86d335e2482e801309c8c36d05e2097437129b9885434b876884ebe3",
-				"dweb:/ipfs/QmTbkDy9koXKMKoExk2i7NMXCHRBVnNeoDisRXqE5fh8xr"
+				"bzz-raw://32ce08a0c826039f135c8f40be605c65a08319bd24dbcd04567a9712c4d20deb",
+				"dweb:/ipfs/QmRotyRBWudSioWq29VKLUK84aAndSA1x4nWY15zTHi846"
 			]
 		},
 		"contracts/interface/IScorer.sol": {
-			"keccak256": "0xa0801b8686b542142fa3a46bb249a3cfbf1b02d5dae8b422384aa61cc6833f15",
+			"keccak256": "0x5bf83793e4290e7e68813647ee12b8abc4c538289be58958e32b7333b5b04e50",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://51c0490624c39104573774d764c694e0dc429a38b737e398035439fa4ecc1280",
-				"dweb:/ipfs/QmTdXMcUJMRzh34HweyJhGsFnweTWGFvoWPaxUcvaPBted"
+				"bzz-raw://0f2ae1e6cfcef833b0424c313a99b39e98c418ba4fc037c081644ef42e598776",
+				"dweb:/ipfs/QmSyyx1J5C2o3KCaWxDf3Gd9szsZGdzJCbe4u4SvdNXPjV"
 			]
 		}
 	},

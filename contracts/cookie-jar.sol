@@ -31,6 +31,12 @@ contract nCookieJar is OwnableUpgradeable {
     event AllowedAmountUpdated(address indexed user, address indexed token, uint256 newAmount);
     event RoundUpdated(uint256 start, uint256 end, string metadataURI);
 
+
+    modifier onlyAdmin() {
+        require(scorer.isAdmin(msg.sender), "Caller is not an admin");
+        _;
+    }
+
     /// @notice Initializes this contract with its initial state.
     ///
     /// @param _scorer The scoring contract address.
@@ -83,7 +89,7 @@ contract nCookieJar is OwnableUpgradeable {
     /// @param user The address of the user.
     /// @param token The token address.
     /// @param amount The allowed amount for the user.
-    function setAllowedAmount(address user, address token, uint256 amount) external onlyOwner {
+    function setAllowedAmount(address user, address token, uint256 amount) external onlyAdmin {
         allowedAmounts[user][token] = amount;
         emit AllowedAmountUpdated(user, token, amount);
     }
@@ -93,7 +99,7 @@ contract nCookieJar is OwnableUpgradeable {
     /// @param start The start timestamp of the round.
     /// @param end The end timestamp of the round.
     /// @param metadataURI The IPFS URI for the round metadata.
-    function setRound(uint256 start, uint256 end, string memory metadataURI) external onlyOwner {
+    function setRound(uint256 start, uint256 end, string memory metadataURI) external onlyAdmin {
         require(start < end, "Start time must be before end time");
         currentRound = Round(start, end, metadataURI);
         emit RoundUpdated(start, end, metadataURI);

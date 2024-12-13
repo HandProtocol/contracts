@@ -1,13 +1,13 @@
 {
-	"id": "e72da30f32f9b172f454c3edc75d1a96",
+	"id": "7d45c2f4b87054b46c7c8d1e112aef03",
 	"_format": "hh-sol-build-info-1",
-	"solcVersion": "0.8.28",
-	"solcLongVersion": "0.8.28+commit.7893614a",
+	"solcVersion": "0.8.26",
+	"solcLongVersion": "0.8.26+commit.8a97fa7a",
 	"input": {
 		"language": "Solidity",
 		"sources": {
 			"contracts/interface/IScorer.sol": {
-				"content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.17;\r\n\r\ninterface IScorer {\r\n    /**\r\n     * @dev Returns the score of a specific user for a given score type.\r\n     *      The score type is represented as a `bytes32` hash (e.g., keccak256(\"Trust\")).\r\n     *      The score is typically used to determine the user's eligibility for certain actions or claims.\r\n     *      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.\r\n     *\r\n     * @param user The address of the user whose score is being queried.\r\n     * @param scoreType The type of score to query, represented as a `bytes32` hash.\r\n     * @return The score of the user as a uint256 value.\r\n     * @notice This function should be implemented in the contract that inherits the `IScorer` interface.\r\n     */\r\n    function score(address user, string memory scoreType) external view returns (uint256);\r\n}\r\n"
+				"content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.17;\r\n\r\ninterface IScorer {\r\n    /**\r\n     * @dev Returns the score of a specific user for a given score type.\r\n     *      The score type is represented as a `bytes32` hash (e.g., keccak256(\"Trust\")).\r\n     *      The score is typically used to determine the user's eligibility for certain actions or claims.\r\n     *      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.\r\n     *\r\n     * @param user The address of the user whose score is being queried.\r\n     * @param scoreType The type of score to query, represented as a `bytes32` hash.\r\n     * @return The score of the user as a uint256 value.\r\n     * @notice This function should be implemented in the contract that inherits the `IScorer` interface.\r\n     */\r\n    function score(address user, string memory scoreType) external view returns (uint256);\r\n\r\n    /**\r\n     * @dev Checks if the provided address is an admin.\r\n     * @param admin The address to check for admin status.\r\n     * @return True if the address is an admin, false otherwise.\r\n     * @notice This function should be implemented in the contract that inherits the `IScorer` interface.\r\n     */\r\n    function isAdmin(address admin) external view returns (bool);\r\n}\r\n"
 			}
 		},
 		"settings": {
@@ -47,6 +47,25 @@
 							"inputs": [
 								{
 									"internalType": "address",
+									"name": "admin",
+									"type": "address"
+								}
+							],
+							"name": "isAdmin",
+							"outputs": [
+								{
+									"internalType": "bool",
+									"name": "",
+									"type": "bool"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "address",
 									"name": "user",
 									"type": "address"
 								},
@@ -71,6 +90,15 @@
 					"devdoc": {
 						"kind": "dev",
 						"methods": {
+							"isAdmin(address)": {
+								"details": "Checks if the provided address is an admin.",
+								"params": {
+									"admin": "The address to check for admin status."
+								},
+								"returns": {
+									"_0": "True if the address is an admin, false otherwise."
+								}
+							},
 							"score(address,string)": {
 								"details": "Returns the score of a specific user for a given score type.      The score type is represented as a `bytes32` hash (e.g., keccak256(\"Trust\")).      The score is typically used to determine the user's eligibility for certain actions or claims.      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.",
 								"params": {
@@ -106,10 +134,11 @@
 						"gasEstimates": null,
 						"legacyAssembly": null,
 						"methodIdentifiers": {
+							"isAdmin(address)": "24d7806c",
 							"score(address,string)": "db4f1024"
 						}
 					},
-					"metadata": "{\"compiler\":{\"version\":\"0.8.28+commit.7893614a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"scoreType\",\"type\":\"string\"}],\"name\":\"score\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"score(address,string)\":{\"details\":\"Returns the score of a specific user for a given score type.      The score type is represented as a `bytes32` hash (e.g., keccak256(\\\"Trust\\\")).      The score is typically used to determine the user's eligibility for certain actions or claims.      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.\",\"params\":{\"scoreType\":\"The type of score to query, represented as a `bytes32` hash.\",\"user\":\"The address of the user whose score is being queried.\"},\"returns\":{\"_0\":\"The score of the user as a uint256 value.\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"score(address,string)\":{\"notice\":\"This function should be implemented in the contract that inherits the `IScorer` interface.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/interface/IScorer.sol\":\"IScorer\"},\"evmVersion\":\"cancun\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/interface/IScorer.sol\":{\"keccak256\":\"0xa0801b8686b542142fa3a46bb249a3cfbf1b02d5dae8b422384aa61cc6833f15\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://51c0490624c39104573774d764c694e0dc429a38b737e398035439fa4ecc1280\",\"dweb:/ipfs/QmTdXMcUJMRzh34HweyJhGsFnweTWGFvoWPaxUcvaPBted\"]}},\"version\":1}",
+					"metadata": "{\"compiler\":{\"version\":\"0.8.26+commit.8a97fa7a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"admin\",\"type\":\"address\"}],\"name\":\"isAdmin\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"scoreType\",\"type\":\"string\"}],\"name\":\"score\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"isAdmin(address)\":{\"details\":\"Checks if the provided address is an admin.\",\"params\":{\"admin\":\"The address to check for admin status.\"},\"returns\":{\"_0\":\"True if the address is an admin, false otherwise.\"}},\"score(address,string)\":{\"details\":\"Returns the score of a specific user for a given score type.      The score type is represented as a `bytes32` hash (e.g., keccak256(\\\"Trust\\\")).      The score is typically used to determine the user's eligibility for certain actions or claims.      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.\",\"params\":{\"scoreType\":\"The type of score to query, represented as a `bytes32` hash.\",\"user\":\"The address of the user whose score is being queried.\"},\"returns\":{\"_0\":\"The score of the user as a uint256 value.\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"isAdmin(address)\":{\"notice\":\"This function should be implemented in the contract that inherits the `IScorer` interface.\"},\"score(address,string)\":{\"notice\":\"This function should be implemented in the contract that inherits the `IScorer` interface.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/interface/IScorer.sol\":\"IScorer\"},\"evmVersion\":\"cancun\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/interface/IScorer.sol\":{\"keccak256\":\"0x5bf83793e4290e7e68813647ee12b8abc4c538289be58958e32b7333b5b04e50\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0f2ae1e6cfcef833b0424c313a99b39e98c418ba4fc037c081644ef42e598776\",\"dweb:/ipfs/QmSyyx1J5C2o3KCaWxDf3Gd9szsZGdzJCbe4u4SvdNXPjV\"]}},\"version\":1}",
 					"storageLayout": {
 						"storage": [],
 						"types": null
@@ -117,6 +146,9 @@
 					"userdoc": {
 						"kind": "user",
 						"methods": {
+							"isAdmin(address)": {
+								"notice": "This function should be implemented in the contract that inherits the `IScorer` interface."
+							},
 							"score(address,string)": {
 								"notice": "This function should be implemented in the contract that inherits the `IScorer` interface."
 							}
@@ -132,10 +164,10 @@
 					"absolutePath": "contracts/interface/IScorer.sol",
 					"exportedSymbols": {
 						"IScorer": [
-							12
+							20
 						]
 					},
-					"id": 13,
+					"id": 21,
 					"license": "MIT",
 					"nodeType": "SourceUnit",
 					"nodes": [
@@ -157,9 +189,9 @@
 							"contractDependencies": [],
 							"contractKind": "interface",
 							"fullyImplemented": false,
-							"id": 12,
+							"id": 20,
 							"linearizedBaseContracts": [
-								12
+								20
 							],
 							"name": "IScorer",
 							"nameLocation": "71:7:0",
@@ -276,20 +308,110 @@
 										],
 										"src": "909:9:0"
 									},
-									"scope": 12,
+									"scope": 20,
 									"src": "833:86:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 12,
+										"nodeType": "StructuredDocumentation",
+										"src": "927:302:0",
+										"text": " @dev Checks if the provided address is an admin.\n @param admin The address to check for admin status.\n @return True if the address is an admin, false otherwise.\n @notice This function should be implemented in the contract that inherits the `IScorer` interface."
+									},
+									"functionSelector": "24d7806c",
+									"id": 19,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "isAdmin",
+									"nameLocation": "1244:7:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 15,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 14,
+												"mutability": "mutable",
+												"name": "admin",
+												"nameLocation": "1260:5:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 19,
+												"src": "1252:13:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 13,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "1252:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1251:15:0"
+									},
+									"returnParameters": {
+										"id": 18,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 17,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 19,
+												"src": "1290:4:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												},
+												"typeName": {
+													"id": 16,
+													"name": "bool",
+													"nodeType": "ElementaryTypeName",
+													"src": "1290:4:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bool",
+														"typeString": "bool"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "1289:6:0"
+									},
+									"scope": 20,
+									"src": "1235:61:0",
 									"stateMutability": "view",
 									"virtual": false,
 									"visibility": "external"
 								}
 							],
-							"scope": 13,
-							"src": "61:861:0",
+							"scope": 21,
+							"src": "61:1238:0",
 							"usedErrors": [],
 							"usedEvents": []
 						}
 					],
-					"src": "33:891:0"
+					"src": "33:1268:0"
 				},
 				"id": 0
 			}

@@ -94,4 +94,5 @@ contract Scorer is OwnableUpgradeable, AccessControlUpgradeable {
     function isAdmin(address admin) external view returns (bool) {
         return hasRole(ADMIN_ROLE, admin);
     }
+
 }

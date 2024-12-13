@@ -1,10 +1,29 @@
 {
 	"compiler": {
-		"version": "0.8.28+commit.7893614a"
+		"version": "0.8.26+commit.8a97fa7a"
 	},
 	"language": "Solidity",
 	"output": {
 		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "admin",
+						"type": "address"
+					}
+				],
+				"name": "isAdmin",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
 			{
 				"inputs": [
 					{
@@ -33,6 +52,15 @@
 		"devdoc": {
 			"kind": "dev",
 			"methods": {
+				"isAdmin(address)": {
+					"details": "Checks if the provided address is an admin.",
+					"params": {
+						"admin": "The address to check for admin status."
+					},
+					"returns": {
+						"_0": "True if the address is an admin, false otherwise."
+					}
+				},
 				"score(address,string)": {
 					"details": "Returns the score of a specific user for a given score type.      The score type is represented as a `bytes32` hash (e.g., keccak256(\"Trust\")).      The score is typically used to determine the user's eligibility for certain actions or claims.      The exact logic for scoring is determined by the implementation of the contract that inherits this interface.",
 					"params": {
@@ -49,6 +77,9 @@
 		"userdoc": {
 			"kind": "user",
 			"methods": {
+				"isAdmin(address)": {
+					"notice": "This function should be implemented in the contract that inherits the `IScorer` interface."
+				},
 				"score(address,string)": {
 					"notice": "This function should be implemented in the contract that inherits the `IScorer` interface."
 				}
@@ -73,11 +104,11 @@
 	},
 	"sources": {
 		"contracts/interface/IScorer.sol": {
-			"keccak256": "0xa0801b8686b542142fa3a46bb249a3cfbf1b02d5dae8b422384aa61cc6833f15",
+			"keccak256": "0x5bf83793e4290e7e68813647ee12b8abc4c538289be58958e32b7333b5b04e50",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://51c0490624c39104573774d764c694e0dc429a38b737e398035439fa4ecc1280",
-				"dweb:/ipfs/QmTdXMcUJMRzh34HweyJhGsFnweTWGFvoWPaxUcvaPBted"
+				"bzz-raw://0f2ae1e6cfcef833b0424c313a99b39e98c418ba4fc037c081644ef42e598776",
+				"dweb:/ipfs/QmSyyx1J5C2o3KCaWxDf3Gd9szsZGdzJCbe4u4SvdNXPjV"
 			]
 		}
 	},
