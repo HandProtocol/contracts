@@ -62,32 +62,6 @@
 				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "admin",
-						"type": "address"
-					}
-				],
-				"name": "AdminAdded",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "admin",
-						"type": "address"
-					}
-				],
-				"name": "AdminRemoved",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
 						"indexed": false,
 						"internalType": "uint64",
 						"name": "version",
@@ -779,11 +753,11 @@
 			]
 		},
 		"contracts/scorer.sol": {
-			"keccak256": "0xbc38f5eb0c66f4347749fe9665e1348debbe877c7685a3293728b22ca5586eb2",
+			"keccak256": "0xcea12775a6e975e327e421a3a428fac5acc59eebe1add8fd6ef910ea6c302552",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://1f1c546debaebb549976401ffb34e4e51d87c8c13c4fdfc6e6fab4484eec88e8",
-				"dweb:/ipfs/QmcZj32fuj9BihtNitEh8NuDoVPgSuFWocUMhix7L8AHt3"
+				"bzz-raw://5614d2f4168d432eb7819d5f0793a2dcfdf47e1edb5f7e974f2b6b44c275c54a",
+				"dweb:/ipfs/QmbPabQWXr1Beu94RNcFzA2ma5t3hSTce22jZWWLcr1uiM"
 			]
 		}
 	},
