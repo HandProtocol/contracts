@@ -13,8 +13,6 @@ contract Scorer is OwnableUpgradeable, AccessControlUpgradeable {
     event ScoreUpdated(address indexed user, string scoreType, uint256 newScore, uint256 oldScore);
     event ScoreTypeAdded(string scoreType);
     event ScoreTypeRemoved(string scoreType);
-    event AdminAdded(address indexed admin);
-    event AdminRemoved(address indexed admin);
 
     /// @notice Initializes the contract by setting up its initial state.
     ///
@@ -22,7 +20,6 @@ contract Scorer is OwnableUpgradeable, AccessControlUpgradeable {
     function initialize(address owner) external initializer {
         __Ownable_init(owner);
         __AccessControl_init();
-
         _grantRole(DEFAULT_ADMIN_ROLE, owner);
         _grantRole(ADMIN_ROLE, owner);
     }
@@ -83,15 +80,14 @@ contract Scorer is OwnableUpgradeable, AccessControlUpgradeable {
 
     function addAdmin(address admin) external onlyOwner {
         grantRole(ADMIN_ROLE, admin);
-        emit AdminAdded(admin);
     }
 
     function removeAdmin(address admin) external onlyOwner {
         revokeRole(ADMIN_ROLE, admin);
-        emit AdminRemoved(admin);
     }
 
     function isAdmin(address admin) external view returns (bool) {
         return hasRole(ADMIN_ROLE, admin);
     }
+
 }

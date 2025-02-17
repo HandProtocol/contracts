@@ -1,6 +1,6 @@
 {
   "name": "nCookieJar",
-  "address": "0x2ad114bddd97fdea5c696f3778cb89ee9ef57837",
+  "address": "0x7205293b597ce7eb94aa2025832da2ddee5079b7",
   "abi": [
     {
       "inputs": [
@@ -446,5 +446,5 @@
     }
   ],
   "filePath": "Hand Protocol/contracts/cookie-jar.sol",
-  "pinnedAt": 1733225051015
+  "pinnedAt": 1734595451264
 }

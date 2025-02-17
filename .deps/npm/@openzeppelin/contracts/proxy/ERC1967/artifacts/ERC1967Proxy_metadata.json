@@ -6,36 +6,52 @@
 	"output": {
 		"abi": [
 			{
-				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": false,
 						"internalType": "address",
-						"name": "previousAdmin",
+						"name": "implementation",
 						"type": "address"
 					},
 					{
-						"indexed": false,
-						"internalType": "address",
-						"name": "newAdmin",
-						"type": "address"
+						"internalType": "bytes",
+						"name": "_data",
+						"type": "bytes"
 					}
 				],
-				"name": "AdminChanged",
-				"type": "event"
+				"stateMutability": "payable",
+				"type": "constructor"
 			},
 			{
-				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": true,
 						"internalType": "address",
-						"name": "beacon",
+						"name": "target",
 						"type": "address"
 					}
 				],
-				"name": "BeaconUpgraded",
-				"type": "event"
+				"name": "AddressEmptyCode",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "implementation",
+						"type": "address"
+					}
+				],
+				"name": "ERC1967InvalidImplementation",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "ERC1967NonPayable",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "FailedCall",
+				"type": "error"
 			},
 			{
 				"anonymous": false,
@@ -51,41 +67,43 @@
 				"type": "event"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "newImplementation",
-						"type": "address"
-					},
-					{
-						"internalType": "bytes",
-						"name": "data",
-						"type": "bytes"
-					}
-				],
-				"name": "upgradeToAndCall",
-				"outputs": [],
 				"stateMutability": "payable",
-				"type": "function"
+				"type": "fallback"
 			}
 		],
 		"devdoc": {
-			"details": "Interface for {TransparentUpgradeableProxy}. In order to implement transparency, {TransparentUpgradeableProxy} does not implement this interface directly, and its upgradeability mechanism is implemented by an internal dispatch mechanism. The compiler is unaware that these functions are implemented by {TransparentUpgradeableProxy} and will not include them in the ABI so this interface must be used to interact with it.",
+			"details": "This contract implements an upgradeable proxy. It is upgradeable because calls are delegated to an implementation address that can be changed. This address is stored in storage in the location specified by https://eips.ethereum.org/EIPS/eip-1967[ERC-1967], so that it doesn't conflict with the storage layout of the implementation behind the proxy.",
+			"errors": {
+				"AddressEmptyCode(address)": [
+					{
+						"details": "There's no code at `target` (it is not a contract)."
+					}
+				],
+				"ERC1967InvalidImplementation(address)": [
+					{
+						"details": "The `implementation` of the proxy is invalid."
+					}
+				],
+				"ERC1967NonPayable()": [
+					{
+						"details": "An upgrade function sees `msg.value > 0` that may be lost."
+					}
+				],
+				"FailedCall()": [
+					{
+						"details": "A call to an address target failed. The target may have reverted."
+					}
+				]
+			},
 			"events": {
-				"AdminChanged(address,address)": {
-					"details": "Emitted when the admin account has changed."
-				},
-				"BeaconUpgraded(address)": {
-					"details": "Emitted when the beacon is changed."
-				},
 				"Upgraded(address)": {
 					"details": "Emitted when the implementation is upgraded."
 				}
 			},
 			"kind": "dev",
 			"methods": {
-				"upgradeToAndCall(address,bytes)": {
-					"details": "See {UUPSUpgradeable-upgradeToAndCall}"
+				"constructor": {
+					"details": "Initializes the upgradeable proxy with an initial implementation specified by `implementation`. If `_data` is nonempty, it's used as data in a delegate call to `implementation`. This will typically be an encoded function call, and allows initializing the storage of the proxy like a Solidity constructor. Requirements: - If `data` is empty, `msg.value` must be zero."
 				}
 			},
 			"version": 1
@@ -98,7 +116,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			".deps/npm/@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol": "ITransparentUpgradeableProxy"
+			".deps/npm/@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol": "ERC1967Proxy"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -112,14 +130,6 @@
 		"remappings": []
 	},
 	"sources": {
-		".deps/npm/@openzeppelin/contracts/access/Ownable.sol": {
-			"keccak256": "0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://8ed324d3920bb545059d66ab97d43e43ee85fd3bd52e03e401f020afb0b120f6",
-				"dweb:/ipfs/QmfEckWLmZkDDcoWrkEvMWhms66xwTLff9DDhegYpvHo1a"
-			]
-		},
 		".deps/npm/@openzeppelin/contracts/interfaces/IERC1967.sol": {
 			"keccak256": "0xb25a4f11fa80c702bf5cd85adec90e6f6f507f32f4a8e6f5dbc31e8c10029486",
 			"license": "MIT",
@@ -160,36 +170,12 @@
 				"dweb:/ipfs/QmWRMh4Q9DpaU9GvsiXmDdoNYMyyece9if7hnfLz7uqzWM"
 			]
 		},
-		".deps/npm/@openzeppelin/contracts/proxy/transparent/ProxyAdmin.sol": {
-			"keccak256": "0xeb19221d51578ea190f0b7d807c5f196db6ff4eca90fee396f45ce9669080ba0",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://e4ca4196dab20274d1276d902d17034065f014aeebf496f20e39e760899650b0",
-				"dweb:/ipfs/QmXFoF93GmZgZHbUvSqLjBGnQ3MY429Bnvk7SvLKEUsEAN"
-			]
-		},
-		".deps/npm/@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol": {
-			"keccak256": "0x724b755843cff10a8e1503d374b857c9e7648be24e7acf1e5bee0584f1b0505c",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://740ad3ba1c12e426ea32cf234f445431a13efa8dbed38b53c869237e31fc8347",
-				"dweb:/ipfs/QmQ3UKUnBQn4gjxjDNGuDLQWuQqcxWzyj1HzwjFgjAJBqh"
-			]
-		},
 		".deps/npm/@openzeppelin/contracts/utils/Address.sol": {
 			"keccak256": "0x9d8da059267bac779a2dbbb9a26c2acf00ca83085e105d62d5d4ef96054a47f5",
 			"license": "MIT",
 			"urls": [
 				"bzz-raw://c78e2aa4313323cecd1ef12a8d6265b96beee1a199923abf55d9a2a9e291ad23",
 				"dweb:/ipfs/QmUTs2KStXucZezzFo3EYeqYu47utu56qrF7jj1Gue65vb"
-			]
-		},
-		".deps/npm/@openzeppelin/contracts/utils/Context.sol": {
-			"keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
-				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
 			]
 		},
 		".deps/npm/@openzeppelin/contracts/utils/Errors.sol": {

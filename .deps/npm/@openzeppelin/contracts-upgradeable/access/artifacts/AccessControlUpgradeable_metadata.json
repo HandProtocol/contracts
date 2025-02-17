@@ -37,28 +37,6 @@
 				"type": "error"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "owner",
-						"type": "address"
-					}
-				],
-				"name": "OwnableInvalidOwner",
-				"type": "error"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "account",
-						"type": "address"
-					}
-				],
-				"name": "OwnableUnauthorizedAccount",
-				"type": "error"
-			},
-			{
 				"anonymous": false,
 				"inputs": [
 					{
@@ -69,25 +47,6 @@
 					}
 				],
 				"name": "Initialized",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "previousOwner",
-						"type": "address"
-					},
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "newOwner",
-						"type": "address"
-					}
-				],
-				"name": "OwnershipTransferred",
 				"type": "event"
 			},
 			{
@@ -166,76 +125,6 @@
 				"type": "event"
 			},
 			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": false,
-						"internalType": "string",
-						"name": "scoreType",
-						"type": "string"
-					}
-				],
-				"name": "ScoreTypeAdded",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": false,
-						"internalType": "string",
-						"name": "scoreType",
-						"type": "string"
-					}
-				],
-				"name": "ScoreTypeRemoved",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "user",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "string",
-						"name": "scoreType",
-						"type": "string"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "newScore",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "oldScore",
-						"type": "uint256"
-					}
-				],
-				"name": "ScoreUpdated",
-				"type": "event"
-			},
-			{
-				"inputs": [],
-				"name": "ADMIN_ROLE",
-				"outputs": [
-					{
-						"internalType": "bytes32",
-						"name": "",
-						"type": "bytes32"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "DEFAULT_ADMIN_ROLE",
 				"outputs": [
@@ -246,32 +135,6 @@
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "admin",
-						"type": "address"
-					}
-				],
-				"name": "addAdmin",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "scoreType",
-						"type": "string"
-					}
-				],
-				"name": "addScoreType",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -338,84 +201,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "owner",
-						"type": "address"
-					}
-				],
-				"name": "initialize",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "admin",
-						"type": "address"
-					}
-				],
-				"name": "isAdmin",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "owner",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "admin",
-						"type": "address"
-					}
-				],
-				"name": "removeAdmin",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "scoreType",
-						"type": "string"
-					}
-				],
-				"name": "removeScoreType",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "renounceOwnership",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "bytes32",
 						"name": "role",
 						"type": "bytes32"
@@ -452,72 +237,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "user",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "scoreType",
-						"type": "string"
-					}
-				],
-				"name": "score",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "scoreTypes",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "user",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "scoreType",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "newScore",
-						"type": "uint256"
-					}
-				],
-				"name": "setScore",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "bytes4",
 						"name": "interfaceId",
 						"type": "bytes4"
@@ -533,22 +252,10 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "newOwner",
-						"type": "address"
-					}
-				],
-				"name": "transferOwnership",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
 			}
 		],
 		"devdoc": {
+			"details": "Contract module that allows children to implement role-based access control mechanisms. This is a lightweight version that doesn't allow enumerating role members except through off-chain means by accessing the contract event logs. Some applications may benefit from on-chain enumerability, for those cases see {AccessControlEnumerable}. Roles are referred to by their `bytes32` identifier. These should be exposed in the external API and be unique. The best way to achieve this is by using `public constant` hash digests: ```solidity bytes32 public constant MY_ROLE = keccak256(\"MY_ROLE\"); ``` Roles can be used to represent a set of permissions. To restrict access to a function call, use {hasRole}: ```solidity function foo() public {     require(hasRole(MY_ROLE, msg.sender));     ... } ``` Roles can be granted and revoked dynamically via the {grantRole} and {revokeRole} functions. Each role has an associated admin role, and only accounts that have a role's admin role can call {grantRole} and {revokeRole}. By default, the admin role for all roles is `DEFAULT_ADMIN_ROLE`, which means that only accounts with this role will be able to grant or revoke other roles. More complex role relationships can be created by using {_setRoleAdmin}. WARNING: The `DEFAULT_ADMIN_ROLE` is also its own admin: it has permission to grant and revoke this role. Extra precautions should be taken to secure accounts that have been granted it. We recommend using {AccessControlDefaultAdminRules} to enforce additional security measures for this role.",
 			"errors": {
 				"AccessControlBadConfirmation()": [
 					{
@@ -569,16 +276,6 @@
 					{
 						"details": "The contract is not initializing."
 					}
-				],
-				"OwnableInvalidOwner(address)": [
-					{
-						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
-					}
-				],
-				"OwnableUnauthorizedAccount(address)": [
-					{
-						"details": "The caller account is not authorized to perform an operation."
-					}
 				]
 			},
 			"events": {
@@ -597,11 +294,6 @@
 			},
 			"kind": "dev",
 			"methods": {
-				"addScoreType(string)": {
-					"params": {
-						"scoreType": "The name of the score type to add."
-					}
-				},
 				"getRoleAdmin(bytes32)": {
 					"details": "Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}."
 				},
@@ -611,78 +303,27 @@
 				"hasRole(bytes32,address)": {
 					"details": "Returns `true` if `account` has been granted `role`."
 				},
-				"initialize(address)": {
-					"params": {
-						"owner": "The owner address."
-					}
-				},
-				"owner()": {
-					"details": "Returns the address of the current owner."
-				},
-				"removeScoreType(string)": {
-					"params": {
-						"scoreType": "The name of the score type to remove."
-					}
-				},
-				"renounceOwnership()": {
-					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
-				},
 				"renounceRole(bytes32,address)": {
 					"details": "Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been revoked `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `callerConfirmation`. May emit a {RoleRevoked} event."
 				},
 				"revokeRole(bytes32,address)": {
 					"details": "Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleRevoked} event."
 				},
-				"score(address,string)": {
-					"params": {
-						"scoreType": "The type of the score.",
-						"user": "The address of the user."
-					},
-					"returns": {
-						"_0": "The score value for the user and type."
-					}
-				},
-				"setScore(address,string,uint256)": {
-					"params": {
-						"newScore": "The new score value.",
-						"scoreType": "The type of the score.",
-						"user": "The address of the user."
-					}
-				},
 				"supportsInterface(bytes4)": {
 					"details": "See {IERC165-supportsInterface}."
-				},
-				"transferOwnership(address)": {
-					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
 				}
 			},
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
-			"methods": {
-				"addScoreType(string)": {
-					"notice": "Adds a new score type."
-				},
-				"initialize(address)": {
-					"notice": "Initializes the contract by setting up its initial state."
-				},
-				"removeScoreType(string)": {
-					"notice": "Removes an existing score type."
-				},
-				"score(address,string)": {
-					"notice": "Retrieves the score of a specific user for a given type."
-				},
-				"setScore(address,string,uint256)": {
-					"notice": "Sets the score for a specific user and type."
-				}
-			},
+			"methods": {},
 			"version": 1
 		}
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/scorer.sol": "Scorer"
+			".deps/npm/@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol": "AccessControlUpgradeable"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -696,7 +337,7 @@
 		"remappings": []
 	},
 	"sources": {
-		"@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol": {
+		".deps/npm/@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol": {
 			"keccak256": "0x6662ec4e5cefca03eeadd073e9469df8d2944bb2ee8ec8f7622c2c46aab5f225",
 			"license": "MIT",
 			"urls": [
@@ -704,15 +345,7 @@
 				"dweb:/ipfs/QmdGWqdnXT8S3RgCR6aV8XHZrsybieMQLLnug1NtpSjEXN"
 			]
 		},
-		"@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol": {
-			"keccak256": "0xc163fcf9bb10138631a9ba5564df1fa25db9adff73bd9ee868a8ae1858fe093a",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://9706d43a0124053d9880f6e31a59f31bc0a6a3dc1acd66ce0a16e1111658c5f6",
-				"dweb:/ipfs/QmUFmfowzkRwGtDu36cXV9SPTBHJ3n7dG9xQiK5B28jTf2"
-			]
-		},
-		"@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol": {
+		".deps/npm/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol": {
 			"keccak256": "0x631188737069917d2f909d29ce62c4d48611d326686ba6683e26b72a23bfac0b",
 			"license": "MIT",
 			"urls": [
@@ -720,7 +353,7 @@
 				"dweb:/ipfs/QmUvtdp7X1mRVyC3CsHrtPbgoqWaXHp3S1ZR24tpAQYJWM"
 			]
 		},
-		"@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol": {
+		".deps/npm/@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol": {
 			"keccak256": "0xdbef5f0c787055227243a7318ef74c8a5a1108ca3a07f2b3a00ef67769e1e397",
 			"license": "MIT",
 			"urls": [
@@ -728,7 +361,7 @@
 				"dweb:/ipfs/QmPKn6EYDgpga7KtpkA8wV2yJCYGMtc9K4LkJfhKX2RVSV"
 			]
 		},
-		"@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol": {
+		".deps/npm/@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol": {
 			"keccak256": "0xc8ed8d2056934b7675b695dec032f2920c2f5c6cf33a17ca85650940675323ab",
 			"license": "MIT",
 			"urls": [
@@ -750,14 +383,6 @@
 			"urls": [
 				"bzz-raw://f6fda447a62815e8064f47eff0dd1cf58d9207ad69b5d32280f8d7ed1d1e4621",
 				"dweb:/ipfs/QmfDRc7pxfaXB2Dh9np5Uf29Na3pQ7tafRS684wd3GLjVL"
-			]
-		},
-		"contracts/scorer.sol": {
-			"keccak256": "0xe539cb523f2111d72e11186c5584344426ea5d9c88444bd3331e34f43fec5877",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://7791f12e259c046f72b21822151cd9f7b54c606518c1f3053ef83e4d51eb5d1d",
-				"dweb:/ipfs/QmTzr7JxTYoogFVKjzcjZAkoLP7JTGnCozDBFasr88gxqn"
 			]
 		}
 	},

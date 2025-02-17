@@ -1,6 +1,6 @@
 {
   "name": "Scorer",
-  "address": "0x274ad6d2c56a60b0ce445972435b598dafec0c47",
+  "address": "0x7403c9263418628e7f1d89d777472347438962b4",
   "abi": [
     {
       "inputs": [],
@@ -111,32 +111,6 @@
       ],
       "name": "OwnableUnauthorizedAccount",
       "type": "error"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "admin",
-          "type": "address"
-        }
-      ],
-      "name": "AdminAdded",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "admin",
-          "type": "address"
-        }
-      ],
-      "name": "AdminRemoved",
-      "type": "event"
     },
     {
       "anonymous": false,
@@ -572,5 +546,5 @@
     }
   ],
   "filePath": "Hand Protocol/contracts/scorer.sol",
-  "pinnedAt": 1733127955742
+  "pinnedAt": 1734595383320
 }

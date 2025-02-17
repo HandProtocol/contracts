@@ -6,55 +6,113 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "initialOwner",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "OwnableInvalidOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "OwnableUnauthorizedAccount",
+				"type": "error"
+			},
+			{
 				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": false,
+						"indexed": true,
 						"internalType": "address",
-						"name": "previousAdmin",
+						"name": "previousOwner",
 						"type": "address"
 					},
 					{
-						"indexed": false,
+						"indexed": true,
 						"internalType": "address",
-						"name": "newAdmin",
+						"name": "newOwner",
 						"type": "address"
 					}
 				],
-				"name": "AdminChanged",
+				"name": "OwnershipTransferred",
 				"type": "event"
 			},
 			{
-				"anonymous": false,
-				"inputs": [
+				"inputs": [],
+				"name": "UPGRADE_INTERFACE_VERSION",
+				"outputs": [
 					{
-						"indexed": true,
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
 						"internalType": "address",
-						"name": "beacon",
+						"name": "",
 						"type": "address"
 					}
 				],
-				"name": "BeaconUpgraded",
-				"type": "event"
+				"stateMutability": "view",
+				"type": "function"
 			},
 			{
-				"anonymous": false,
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
-						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract ITransparentUpgradeableProxy",
+						"name": "proxy",
+						"type": "address"
+					},
+					{
 						"internalType": "address",
 						"name": "implementation",
-						"type": "address"
-					}
-				],
-				"name": "Upgraded",
-				"type": "event"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "newImplementation",
 						"type": "address"
 					},
 					{
@@ -63,29 +121,47 @@
 						"type": "bytes"
 					}
 				],
-				"name": "upgradeToAndCall",
+				"name": "upgradeAndCall",
 				"outputs": [],
 				"stateMutability": "payable",
 				"type": "function"
 			}
 		],
 		"devdoc": {
-			"details": "Interface for {TransparentUpgradeableProxy}. In order to implement transparency, {TransparentUpgradeableProxy} does not implement this interface directly, and its upgradeability mechanism is implemented by an internal dispatch mechanism. The compiler is unaware that these functions are implemented by {TransparentUpgradeableProxy} and will not include them in the ABI so this interface must be used to interact with it.",
-			"events": {
-				"AdminChanged(address,address)": {
-					"details": "Emitted when the admin account has changed."
-				},
-				"BeaconUpgraded(address)": {
-					"details": "Emitted when the beacon is changed."
-				},
-				"Upgraded(address)": {
-					"details": "Emitted when the implementation is upgraded."
-				}
+			"details": "This is an auxiliary contract meant to be assigned as the admin of a {TransparentUpgradeableProxy}. For an explanation of why you would want to use this see the documentation for {TransparentUpgradeableProxy}.",
+			"errors": {
+				"OwnableInvalidOwner(address)": [
+					{
+						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
+					}
+				],
+				"OwnableUnauthorizedAccount(address)": [
+					{
+						"details": "The caller account is not authorized to perform an operation."
+					}
+				]
 			},
 			"kind": "dev",
 			"methods": {
-				"upgradeToAndCall(address,bytes)": {
-					"details": "See {UUPSUpgradeable-upgradeToAndCall}"
+				"constructor": {
+					"details": "Sets the initial owner who can perform upgrades."
+				},
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				},
+				"upgradeAndCall(address,address,bytes)": {
+					"details": "Upgrades `proxy` to `implementation` and calls a function on the new implementation. See {TransparentUpgradeableProxy-_dispatchUpgradeToAndCall}. Requirements: - This contract must be the admin of `proxy`. - If `data` is empty, `msg.value` must be zero."
+				}
+			},
+			"stateVariables": {
+				"UPGRADE_INTERFACE_VERSION": {
+					"details": "The version of the upgrade interface of the contract. If this getter is missing, both `upgrade(address,address)` and `upgradeAndCall(address,address,bytes)` are present, and `upgrade` must be used if no function should be called, while `upgradeAndCall` will invoke the `receive` function if the third argument is the empty byte string. If the getter returns `\"5.0.0\"`, only `upgradeAndCall(address,address,bytes)` is present, and the third argument must be the empty byte string if no function should be called, making it impossible to invoke the `receive` function during an upgrade."
 				}
 			},
 			"version": 1
@@ -98,7 +174,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			".deps/npm/@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol": "ITransparentUpgradeableProxy"
+			".deps/npm/@openzeppelin/contracts/proxy/transparent/ProxyAdmin.sol": "ProxyAdmin"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},

@@ -1,6 +1,6 @@
 {
   "name": "TransparentUpgradeableProxy",
-  "address": "0xf47c6040536d1a1584e4bee580d65014e2fc55fe",
+  "address": "0xa6e35ccf2950c637af0f06e162a3991f50ce210f",
   "abi": [
     {
       "inputs": [
@@ -109,5 +109,5 @@
     }
   ],
   "filePath": "Hand Protocol/.deps/npm/@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol",
-  "pinnedAt": 1733225044719
+  "pinnedAt": 1734595451746
 }
