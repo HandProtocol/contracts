@@ -18,6 +18,27 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "currentTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "start",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "end",
+						"type": "uint256"
+					}
+				],
+				"name": "NotWithinRound",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "owner",
 						"type": "address"
@@ -206,8 +227,12 @@
 				"type": "event"
 			},
 			{
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
 				"inputs": [],
-				"name": "ETHER",
+				"name": "NATIVE_TOKEN",
 				"outputs": [
 					{
 						"internalType": "address",
@@ -260,14 +285,14 @@
 				"name": "currentRound",
 				"outputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "uint64",
 						"name": "start",
-						"type": "uint256"
+						"type": "uint64"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "uint64",
 						"name": "end",
-						"type": "uint256"
+						"type": "uint64"
 					},
 					{
 						"internalType": "string",
@@ -373,14 +398,14 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "uint64",
 						"name": "start",
-						"type": "uint256"
+						"type": "uint64"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "uint64",
 						"name": "end",
-						"type": "uint256"
+						"type": "uint64"
 					},
 					{
 						"internalType": "string",
@@ -508,7 +533,7 @@
 						"user": "The address of the user."
 					}
 				},
-				"setRound(uint256,uint256,string)": {
+				"setRound(uint64,uint64,string)": {
 					"params": {
 						"end": "The end timestamp of the round.",
 						"metadataURI": "The IPFS URI for the round metadata.",
@@ -542,7 +567,7 @@
 				"setAllowedAmount(address,address,uint256)": {
 					"notice": "Sets the allowed amount for a specific user and token."
 				},
-				"setRound(uint256,uint256,string)": {
+				"setRound(uint64,uint64,string)": {
 					"notice": "Sets the round duration and metadata URI."
 				},
 				"withdraw(address,uint256)": {
@@ -554,7 +579,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/sweetspot.sol": "nCookieJar"
+			"contracts/sweetspot.sol": "sweetspot"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -673,11 +698,11 @@
 			]
 		},
 		"contracts/sweetspot.sol": {
-			"keccak256": "0x1b6cf5d2f65b8f031ba009320bf0d4a6a4db5ce42de9b0c27a02a6bb296e5736",
+			"keccak256": "0x79ee6064a8f87793f27133ca6e665441b7664f732f539e0592fd6137a8b4632b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://530ee97f409ef4ab1452f0eb2520d714706c2dcf1b809b88b7eeff33cd2ac210",
-				"dweb:/ipfs/QmUH4hQhtMLtoBEdaxPpeBZW7FkribagpHYfvzPUJpZ857"
+				"bzz-raw://922e75839e7077ac8b3c57fca1293bc6a75a54ac0be43ad055a846e7b47f843e",
+				"dweb:/ipfs/QmTTjogpQWtbQXxjgpKbXm1ea7MAEvaRUfPVKxZVNDqxX6"
 			]
 		}
 	},

@@ -4,19 +4,18 @@ pragma solidity ^0.8.17;
 import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
 import { IERC20 } from '@openzeppelin/contracts/token/ERC20/IERC20.sol';
 import { SafeERC20 } from '@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol';
+import "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol";
 import "./interface/IScorer.sol"; // Import the IScorer interface
 
-contract nCookieJar is OwnableUpgradeable {
+contract sweetspot is OwnableUpgradeable, ReentrancyGuardUpgradeable  {
     using SafeERC20 for IERC20;
 
-    // address public constant ETHER = address(0); // Placeholder for Ether
-    // celo 
-    address public constant ETHER = 0xF194afDf50B03e69Bd7D057c1Aa9e10c9954E4C9;
+    address public constant NATIVE_TOKEN = address(0);
     IScorer public scorer; // Scoring contract for eligibility
 
     struct Round {
-        uint256 start; // Start timestamp of the round
-        uint256 end; // End timestamp of the round
+        uint64 start; // Start timestamp of the round
+        uint64 end; // End timestamp of the round
         string metadataURI; // IPFS URI for round metadata
     }
 
@@ -33,6 +32,8 @@ contract nCookieJar is OwnableUpgradeable {
     event AllowedAmountUpdated(address indexed user, address indexed token, uint256 newAmount);
     event RoundUpdated(uint256 start, uint256 end, string metadataURI);
 
+    error NotWithinRound(uint256 currentTime, uint256 start, uint256 end);
+
 
     modifier onlyAdmin() {
         require(scorer.isAdmin(msg.sender), "Caller is not an admin");
@@ -45,6 +46,7 @@ contract nCookieJar is OwnableUpgradeable {
     /// @param owner The owner address.
     function initialize(address _scorer, address owner) external initializer {
         __Ownable_init(owner); // Initialize OwnableUpgradeable
+         __ReentrancyGuard_init();
         scorer = IScorer(_scorer);
     }
 
@@ -52,8 +54,8 @@ contract nCookieJar is OwnableUpgradeable {
     ///
     /// @param token The token address (address(0) for Ether).
     /// @param amount The value to add (in wei for Ether).
-    function deposit(address token, uint256 amount) external payable {
-        if (token == ETHER) {
+    function deposit(address token, uint256 amount) external payable nonReentrant  {
+        if (token == NATIVE_TOKEN) {
             require(msg.value == amount, "Incorrect Ether amount");
         } else {
             require(amount > 0, "Deposit amount must be greater than zero");
@@ -65,8 +67,11 @@ contract nCookieJar is OwnableUpgradeable {
     }
 
     /// @notice Claims the full allowed amount for a user during the round.
-    function claim(address token) external {
-        require(block.timestamp >= currentRound.start && block.timestamp <= currentRound.end, "Not within round duration");
+    function claim(address token) external nonReentrant {
+        
+        if (block.timestamp < currentRound.start || block.timestamp > currentRound.end) {
+            revert NotWithinRound(block.timestamp, currentRound.start, currentRound.end);
+        }
 
         uint256 userAllowedAmount = allowedAmounts[msg.sender][token];
         require(userAllowedAmount > 0, "No claimable amount");
@@ -76,7 +81,7 @@ contract nCookieJar is OwnableUpgradeable {
         allowedAmounts[msg.sender][token] = 0;
         totalBalances[token] -= userAllowedAmount;
 
-        if (token == ETHER) {
+        if (token == NATIVE_TOKEN) {
             (bool success, ) = msg.sender.call{value: userAllowedAmount}("");
             require(success, "Ether transfer failed");
         } else {
@@ -92,6 +97,7 @@ contract nCookieJar is OwnableUpgradeable {
     /// @param token The token address.
     /// @param amount The allowed amount for the user.
     function setAllowedAmount(address user, address token, uint256 amount) external onlyAdmin {
+        require(user != address(0), "Zero address user");
         allowedAmounts[user][token] = amount;
         emit AllowedAmountUpdated(user, token, amount);
     }
@@ -101,7 +107,7 @@ contract nCookieJar is OwnableUpgradeable {
     /// @param start The start timestamp of the round.
     /// @param end The end timestamp of the round.
     /// @param metadataURI The IPFS URI for the round metadata.
-    function setRound(uint256 start, uint256 end, string memory metadataURI) external onlyAdmin {
+    function setRound(uint64  start, uint64  end, string memory metadataURI) external onlyAdmin {
         require(start < end, "Start time must be before end time");
         currentRound = Round(start, end, metadataURI);
         emit RoundUpdated(start, end, metadataURI);
@@ -111,13 +117,13 @@ contract nCookieJar is OwnableUpgradeable {
     ///
     /// @param token The token address (address(0) for Ether).
     /// @param amount The amount to withdraw.
-    function withdraw(address token, uint256 amount) external onlyOwner {
+    function withdraw(address token, uint256 amount) external onlyOwner nonReentrant  {
         require(amount > 0, "Withdrawal amount must be greater than zero");
         require(totalBalances[token] >= amount, "Insufficient funds");
 
         totalBalances[token] -= amount;
 
-        if (token == ETHER) {
+        if (token == NATIVE_TOKEN) {
             (bool success, ) = owner().call{value: amount}("");
             require(success, "Ether transfer failed");
         } else {
@@ -128,7 +134,12 @@ contract nCookieJar is OwnableUpgradeable {
 
     /// @notice Allows Ether deposits directly via fallback function.
     receive() external payable {
-        totalBalances[ETHER] += msg.value;
-        emit Deposit(msg.sender, ETHER, msg.value);
+        totalBalances[NATIVE_TOKEN] += msg.value;
+        emit Deposit(msg.sender, NATIVE_TOKEN, msg.value);
+    }
+
+    fallback() external payable {
+        // Typically revert to avoid accidental calls with data
+        revert("nCookieJar: use deposit()");
     }
 }
