@@ -27,6 +27,17 @@
 				"type": "error"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "scoreType",
+						"type": "string"
+					}
+				],
+				"name": "DuplicateScoreType",
+				"type": "error"
+			},
+			{
 				"inputs": [],
 				"name": "InvalidInitialization",
 				"type": "error"
@@ -56,6 +67,17 @@
 					}
 				],
 				"name": "OwnableUnauthorizedAccount",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "scoreType",
+						"type": "string"
+					}
+				],
+				"name": "ScoreTypeNotFound",
 				"type": "error"
 			},
 			{
@@ -465,9 +487,9 @@
 				"name": "score",
 				"outputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "uint128",
 						"name": "",
-						"type": "uint256"
+						"type": "uint128"
 					}
 				],
 				"stateMutability": "view",
@@ -505,9 +527,9 @@
 						"type": "string"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "uint128",
 						"name": "newScore",
-						"type": "uint256"
+						"type": "uint128"
 					}
 				],
 				"name": "setScore",
@@ -549,6 +571,7 @@
 			}
 		],
 		"devdoc": {
+			"details": "A contract for managing user scores by type, using AccessControl for admin privileges.",
 			"errors": {
 				"AccessControlBadConfirmation()": [
 					{
@@ -579,6 +602,11 @@
 					{
 						"details": "The caller account is not authorized to perform an operation."
 					}
+				],
+				"ScoreTypeNotFound(string)": [
+					{
+						"details": "Custom errors for cheaper revert messages"
+					}
 				]
 			},
 			"events": {
@@ -597,6 +625,11 @@
 			},
 			"kind": "dev",
 			"methods": {
+				"addAdmin(address)": {
+					"params": {
+						"admin": "The address to be granted admin privileges."
+					}
+				},
 				"addScoreType(string)": {
 					"params": {
 						"scoreType": "The name of the score type to add."
@@ -616,8 +649,21 @@
 						"owner": "The owner address."
 					}
 				},
+				"isAdmin(address)": {
+					"params": {
+						"admin": "The address to be checked."
+					},
+					"returns": {
+						"_0": "True if the address has admin privileges, false otherwise."
+					}
+				},
 				"owner()": {
 					"details": "Returns the address of the current owner."
+				},
+				"removeAdmin(address)": {
+					"params": {
+						"admin": "The address to be revoked of admin privileges."
+					}
 				},
 				"removeScoreType(string)": {
 					"params": {
@@ -639,10 +685,10 @@
 						"user": "The address of the user."
 					},
 					"returns": {
-						"_0": "The score value for the user and type."
+						"_0": "The score value (uint128)."
 					}
 				},
-				"setScore(address,string,uint256)": {
+				"setScore(address,string,uint128)": {
 					"params": {
 						"newScore": "The new score value.",
 						"scoreType": "The type of the score.",
@@ -656,24 +702,48 @@
 					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
 				}
 			},
+			"title": "Scorer",
 			"version": 1
 		},
 		"userdoc": {
+			"events": {
+				"ScoreTypeAdded(string)": {
+					"notice": "Emitted when a new score type is added"
+				},
+				"ScoreTypeRemoved(string)": {
+					"notice": "Emitted when a score type is removed"
+				},
+				"ScoreUpdated(address,string,uint256,uint256)": {
+					"notice": "Emitted when a user's score is updated"
+				}
+			},
 			"kind": "user",
 			"methods": {
+				"addAdmin(address)": {
+					"notice": "Grants the ADMIN_ROLE to a specified address."
+				},
 				"addScoreType(string)": {
-					"notice": "Adds a new score type."
+					"notice": "Adds a new score type. Reverts if it already exists."
 				},
 				"initialize(address)": {
 					"notice": "Initializes the contract by setting up its initial state."
 				},
+				"isAdmin(address)": {
+					"notice": "Checks if a given address has the ADMIN_ROLE."
+				},
+				"removeAdmin(address)": {
+					"notice": "Revokes the ADMIN_ROLE from a specified address."
+				},
 				"removeScoreType(string)": {
-					"notice": "Removes an existing score type."
+					"notice": "Removes an existing score type. Reverts if it doesn't exist."
 				},
 				"score(address,string)": {
 					"notice": "Retrieves the score of a specific user for a given type."
 				},
-				"setScore(address,string,uint256)": {
+				"scoreTypes(uint256)": {
+					"notice": "Array to hold the list of score types"
+				},
+				"setScore(address,string,uint128)": {
 					"notice": "Sets the score for a specific user and type."
 				}
 			},
@@ -753,11 +823,11 @@
 			]
 		},
 		"contracts/scorer.sol": {
-			"keccak256": "0xe539cb523f2111d72e11186c5584344426ea5d9c88444bd3331e34f43fec5877",
+			"keccak256": "0xa47a3b1d90662a5f3d41cdb01f77cfbda341a6cd7df0d0ccbf0c3ec9093f76c5",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://7791f12e259c046f72b21822151cd9f7b54c606518c1f3053ef83e4d51eb5d1d",
-				"dweb:/ipfs/QmTzr7JxTYoogFVKjzcjZAkoLP7JTGnCozDBFasr88gxqn"
+				"bzz-raw://7fb3babb35608c92e1f0ce87958c0a543a2286d72ace5ad7067c26b6d29b966b",
+				"dweb:/ipfs/QmbSRHZsuw6D1prjA6zU4xeSJaFDGrHPgybqRM8BeDVh6d"
 			]
 		}
 	},
