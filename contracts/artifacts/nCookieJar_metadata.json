@@ -657,11 +657,11 @@
 			]
 		},
 		"contracts/cookie-jar.sol": {
-			"keccak256": "0x86d794c457affbe49d3d55ee43030d589df142893035e922375eddc039f25ee1",
+			"keccak256": "0xc4da019c23897b36e06929c72483982397a419acae77b30caa293c18fb8a68a3",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://32ce08a0c826039f135c8f40be605c65a08319bd24dbcd04567a9712c4d20deb",
-				"dweb:/ipfs/QmRotyRBWudSioWq29VKLUK84aAndSA1x4nWY15zTHi846"
+				"bzz-raw://bd1cb84967ebe3d35a5bd32687a80b8e11206208aea91f4c54eecfcc6dd56836",
+				"dweb:/ipfs/QmQEHoSigW8HFJ1s7SF7M3ea8QTgQRPp5rXVEqozi7zvXK"
 			]
 		},
 		"contracts/interface/IScorer.sol": {

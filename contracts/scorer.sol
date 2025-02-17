@@ -20,7 +20,6 @@ contract Scorer is OwnableUpgradeable, AccessControlUpgradeable {
     function initialize(address owner) external initializer {
         __Ownable_init(owner);
         __AccessControl_init();
-
         _grantRole(DEFAULT_ADMIN_ROLE, owner);
         _grantRole(ADMIN_ROLE, owner);
     }

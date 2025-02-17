@@ -9,7 +9,9 @@ import "./interface/IScorer.sol"; // Import the IScorer interface
 contract nCookieJar is OwnableUpgradeable {
     using SafeERC20 for IERC20;
 
-    address public constant ETHER = address(0); // Placeholder for Ether
+    // address public constant ETHER = address(0); // Placeholder for Ether
+    // celo 
+    address public constant ETHER = 0xF194afDf50B03e69Bd7D057c1Aa9e10c9954E4C9;
     IScorer public scorer; // Scoring contract for eligibility
 
     struct Round {
