@@ -1,8 +1,8 @@
-# nCookieJar Contract Documentation
+# SweetSpot Contract Documentation
 
 ## Overview
 
-The `nCookieJar` contract allows users to deposit Ether or ERC20 tokens and claim a specified amount based on their eligibility. The contract incorporates a round-based system, where each round is defined by a start time, end time, and metadata URI. It leverages the `IScorer` interface to ensure claimants meet specific eligibility criteria based on their scores.
+The `sweetspot.sol` contract allows users to deposit Ether or ERC20 tokens and claim a specified amount based on their eligibility. The contract incorporates a round-based system, where each round is defined by a start time, end time, and metadata URI. It leverages the `IScorer` interface to ensure claimants meet specific eligibility criteria based on their scores.
 
 ---
 
