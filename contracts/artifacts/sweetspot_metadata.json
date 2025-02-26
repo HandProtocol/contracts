@@ -698,11 +698,11 @@
 			]
 		},
 		"contracts/sweetspot.sol": {
-			"keccak256": "0x79ee6064a8f87793f27133ca6e665441b7664f732f539e0592fd6137a8b4632b",
+			"keccak256": "0x38064ab42c1be82d348c9b57f5f5babc446618a21e2c034804256f8ff2ab0ec9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://922e75839e7077ac8b3c57fca1293bc6a75a54ac0be43ad055a846e7b47f843e",
-				"dweb:/ipfs/QmTTjogpQWtbQXxjgpKbXm1ea7MAEvaRUfPVKxZVNDqxX6"
+				"bzz-raw://12657b052ccdb98e7c5819cc4c79aee1c2c9cf8bc6ae5ea1d84fcf87def9e5aa",
+				"dweb:/ipfs/Qmc5xguKx161LKWYBjKbYuvirri6W9Jmg7jmQe2G19sVDj"
 			]
 		}
 	},

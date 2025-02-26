@@ -25,7 +25,7 @@ contract sweetspot is OwnableUpgradeable, ReentrancyGuardUpgradeable  {
     mapping(address => uint256) public totalBalances;
     // Allowed amounts per user per token
     mapping(address => mapping(address => uint256)) public allowedAmounts;
-
+ 
     event Deposit(address indexed depositor, address indexed token, uint256 amount);
     event Withdraw(address indexed withdrawer, address indexed token, uint256 amount);
     event Claimed(address indexed claimant, address indexed token, uint256 amount);
@@ -33,7 +33,6 @@ contract sweetspot is OwnableUpgradeable, ReentrancyGuardUpgradeable  {
     event RoundUpdated(uint256 start, uint256 end, string metadataURI);
 
     error NotWithinRound(uint256 currentTime, uint256 start, uint256 end);
-
 
     modifier onlyAdmin() {
         require(scorer.isAdmin(msg.sender), "Caller is not an admin");
@@ -46,7 +45,7 @@ contract sweetspot is OwnableUpgradeable, ReentrancyGuardUpgradeable  {
     /// @param owner The owner address.
     function initialize(address _scorer, address owner) external initializer {
         __Ownable_init(owner); // Initialize OwnableUpgradeable
-         __ReentrancyGuard_init();
+        __ReentrancyGuard_init();
         scorer = IScorer(_scorer);
     }
 
