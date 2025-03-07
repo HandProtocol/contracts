@@ -498,25 +498,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "scoreTypes",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "address",
 						"name": "user",
 						"type": "address"
@@ -740,9 +721,6 @@
 				"score(address,string)": {
 					"notice": "Retrieves the score of a specific user for a given type."
 				},
-				"scoreTypes(uint256)": {
-					"notice": "Array to hold the list of score types"
-				},
 				"setScore(address,string,uint128)": {
 					"notice": "Sets the score for a specific user and type."
 				}
@@ -823,11 +801,11 @@
 			]
 		},
 		"contracts/scorer.sol": {
-			"keccak256": "0xa47a3b1d90662a5f3d41cdb01f77cfbda341a6cd7df0d0ccbf0c3ec9093f76c5",
+			"keccak256": "0x6003870fcb0e8d9f19a6c92e4dc8100ba28dc582dd277b2258cdd05721e9a2f7",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://7fb3babb35608c92e1f0ce87958c0a543a2286d72ace5ad7067c26b6d29b966b",
-				"dweb:/ipfs/QmbSRHZsuw6D1prjA6zU4xeSJaFDGrHPgybqRM8BeDVh6d"
+				"bzz-raw://9c47517f65528a4e1e710655e17827b42c29b626b26709cd34934171a58113db",
+				"dweb:/ipfs/QmSfBUN3qajATRsXXShAVVKahidGEtWPAypgGLJJ8Sfw6n"
 			]
 		}
 	},

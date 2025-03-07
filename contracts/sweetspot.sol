@@ -25,7 +25,7 @@ contract sweetspot is OwnableUpgradeable, ReentrancyGuardUpgradeable  {
     mapping(address => uint256) public totalBalances;
     // Allowed amounts per user per token
     mapping(address => mapping(address => uint256)) public allowedAmounts;
-
+ 
     event Deposit(address indexed depositor, address indexed token, uint256 amount);
     event Withdraw(address indexed withdrawer, address indexed token, uint256 amount);
     event Claimed(address indexed claimant, address indexed token, uint256 amount);
@@ -33,7 +33,6 @@ contract sweetspot is OwnableUpgradeable, ReentrancyGuardUpgradeable  {
     event RoundUpdated(uint256 start, uint256 end, string metadataURI);
 
     error NotWithinRound(uint256 currentTime, uint256 start, uint256 end);
-
 
     modifier onlyAdmin() {
         require(scorer.isAdmin(msg.sender), "Caller is not an admin");
@@ -46,7 +45,7 @@ contract sweetspot is OwnableUpgradeable, ReentrancyGuardUpgradeable  {
     /// @param owner The owner address.
     function initialize(address _scorer, address owner) external initializer {
         __Ownable_init(owner); // Initialize OwnableUpgradeable
-         __ReentrancyGuard_init();
+        __ReentrancyGuard_init();
         scorer = IScorer(_scorer);
     }
 
@@ -76,7 +75,6 @@ contract sweetspot is OwnableUpgradeable, ReentrancyGuardUpgradeable  {
         uint256 userAllowedAmount = allowedAmounts[msg.sender][token];
         require(userAllowedAmount > 0, "No claimable amount");
         require(totalBalances[token] >= userAllowedAmount, "Insufficient funds in jar");
-        require(scorer.score(msg.sender, "Trust") > 0, "Insufficient Trust score");
 
         allowedAmounts[msg.sender][token] = 0;
         totalBalances[token] -= userAllowedAmount;
@@ -100,6 +98,20 @@ contract sweetspot is OwnableUpgradeable, ReentrancyGuardUpgradeable  {
         require(user != address(0), "Zero address user");
         allowedAmounts[user][token] = amount;
         emit AllowedAmountUpdated(user, token, amount);
+    }
+
+    /// @notice Sets the allowed amount for multiple users for a given token in one call.
+    function bulkSetAllowedAmount(
+        address token,
+        address[] calldata users,
+        uint256[] calldata amounts
+    ) external onlyAdmin {
+        require(users.length == amounts.length, "Mismatched array lengths");
+        for (uint256 i = 0; i < users.length; i++) {
+            // You might want to check that the user is not a zero address if needed
+            allowedAmounts[users[i]][token] = amounts[i];
+            emit AllowedAmountUpdated(users[i], token, amounts[i]);
+        }
     }
 
     /// @notice Sets the round duration and metadata URI.
@@ -140,6 +152,6 @@ contract sweetspot is OwnableUpgradeable, ReentrancyGuardUpgradeable  {
 
     fallback() external payable {
         // Typically revert to avoid accidental calls with data
-        revert("nCookieJar: use deposit()");
+        revert("Sweetspot: use deposit()");
     }
 }
