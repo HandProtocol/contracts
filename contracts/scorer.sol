@@ -14,9 +14,6 @@ contract Scorer is OwnableUpgradeable, AccessControlUpgradeable {
     /// @notice Mapping: user => (scoreType => scoreValue)
     mapping(address => mapping(string => uint128)) private _scores;
 
-    /// @notice Array to hold the list of score types
-    string[] public scoreTypes;
-
     /// @notice Additional mapping for O(1) existence checks
     mapping(string => bool) private scoreTypeExists;
 
@@ -61,7 +58,6 @@ contract Scorer is OwnableUpgradeable, AccessControlUpgradeable {
         if (scoreTypeExists[scoreType]) {
             revert DuplicateScoreType(scoreType);
         }
-        scoreTypes.push(scoreType);
         scoreTypeExists[scoreType] = true;
 
         emit ScoreTypeAdded(scoreType);
@@ -81,20 +77,6 @@ contract Scorer is OwnableUpgradeable, AccessControlUpgradeable {
 
         // Mark it as non-existing in the mapping
         scoreTypeExists[scoreType] = false;
-
-        // Remove from the array in O(n) by swapping with the last element
-        uint256 len = scoreTypes.length;
-        for (uint256 i = 0; i < len; i++) {
-            if (
-                keccak256(bytes(scoreTypes[i])) ==
-                keccak256(bytes(scoreType))
-            ) {
-                scoreTypes[i] = scoreTypes[len - 1];
-                scoreTypes.pop();
-                emit ScoreTypeRemoved(scoreType);
-                return;
-            }
-        }
 
         // Shouldn't ever reach here if the mapping is correct,
         // but included as a safeguard:
