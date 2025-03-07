@@ -75,7 +75,6 @@ contract sweetspot is OwnableUpgradeable, ReentrancyGuardUpgradeable  {
         uint256 userAllowedAmount = allowedAmounts[msg.sender][token];
         require(userAllowedAmount > 0, "No claimable amount");
         require(totalBalances[token] >= userAllowedAmount, "Insufficient funds in jar");
-        require(scorer.score(msg.sender, "Trust") > 0, "Insufficient Trust score");
 
         allowedAmounts[msg.sender][token] = 0;
         totalBalances[token] -= userAllowedAmount;
@@ -99,6 +98,20 @@ contract sweetspot is OwnableUpgradeable, ReentrancyGuardUpgradeable  {
         require(user != address(0), "Zero address user");
         allowedAmounts[user][token] = amount;
         emit AllowedAmountUpdated(user, token, amount);
+    }
+
+    /// @notice Sets the allowed amount for multiple users for a given token in one call.
+    function bulkSetAllowedAmount(
+        address token,
+        address[] calldata users,
+        uint256[] calldata amounts
+    ) external onlyAdmin {
+        require(users.length == amounts.length, "Mismatched array lengths");
+        for (uint256 i = 0; i < users.length; i++) {
+            // You might want to check that the user is not a zero address if needed
+            allowedAmounts[users[i]][token] = amounts[i];
+            emit AllowedAmountUpdated(users[i], token, amounts[i]);
+        }
     }
 
     /// @notice Sets the round duration and metadata URI.
@@ -139,6 +152,6 @@ contract sweetspot is OwnableUpgradeable, ReentrancyGuardUpgradeable  {
 
     fallback() external payable {
         // Typically revert to avoid accidental calls with data
-        revert("nCookieJar: use deposit()");
+        revert("Sweetspot: use deposit()");
     }
 }

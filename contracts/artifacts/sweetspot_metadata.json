@@ -273,6 +273,29 @@
 						"internalType": "address",
 						"name": "token",
 						"type": "address"
+					},
+					{
+						"internalType": "address[]",
+						"name": "users",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "amounts",
+						"type": "uint256[]"
+					}
+				],
+				"name": "bulkSetAllowedAmount",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
 					}
 				],
 				"name": "claim",
@@ -555,6 +578,9 @@
 		"userdoc": {
 			"kind": "user",
 			"methods": {
+				"bulkSetAllowedAmount(address,address[],uint256[])": {
+					"notice": "Sets the allowed amount for multiple users for a given token in one call."
+				},
 				"claim(address)": {
 					"notice": "Claims the full allowed amount for a user during the round."
 				},
@@ -698,11 +724,11 @@
 			]
 		},
 		"contracts/sweetspot.sol": {
-			"keccak256": "0x38064ab42c1be82d348c9b57f5f5babc446618a21e2c034804256f8ff2ab0ec9",
+			"keccak256": "0xc1f06e157c4b41c57a88ca0a24e18bed54aa00b3e66c6f32e2cb7583d85b9e32",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://12657b052ccdb98e7c5819cc4c79aee1c2c9cf8bc6ae5ea1d84fcf87def9e5aa",
-				"dweb:/ipfs/Qmc5xguKx161LKWYBjKbYuvirri6W9Jmg7jmQe2G19sVDj"
+				"bzz-raw://6171bb0be84030314e9c9800a981442a1323945aacdd94aa20aaf939ac767434",
+				"dweb:/ipfs/QmQbhNwxkMXDCTnjsdPP584CBZbjWpqfVq943Q6VCRBWp2"
 			]
 		}
 	},
