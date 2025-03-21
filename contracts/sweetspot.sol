@@ -102,15 +102,16 @@ contract sweetspot is OwnableUpgradeable, ReentrancyGuardUpgradeable  {
 
     /// @notice Sets the allowed amount for multiple users for a given token in one call.
     function bulkSetAllowedAmount(
-        address token,
+        address[] calldata tokens,
         address[] calldata users,
         uint256[] calldata amounts
     ) external onlyAdmin {
         require(users.length == amounts.length, "Mismatched array lengths");
+        require(tokens.length == amounts.length, "Mismatched array lengths");
         for (uint256 i = 0; i < users.length; i++) {
             // You might want to check that the user is not a zero address if needed
-            allowedAmounts[users[i]][token] = amounts[i];
-            emit AllowedAmountUpdated(users[i], token, amounts[i]);
+            allowedAmounts[users[i]][tokens[i]] = amounts[i];
+            emit AllowedAmountUpdated(users[i], tokens[i], amounts[i]);
         }
     }
 
