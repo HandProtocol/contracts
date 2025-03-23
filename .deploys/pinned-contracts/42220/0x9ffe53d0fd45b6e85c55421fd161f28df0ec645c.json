@@ -1,13 +1,13 @@
 {
   "name": "sweetspot",
-  "address": "0xfdbcc39266ae9e89f92663dde36dfeee1f953245",
+  "address": "0x9ffe53d0fd45b6e85c55421fd161f28df0ec645c",
   "abi": [
     {
       "inputs": [
         {
-          "internalType": "address",
-          "name": "token",
-          "type": "address"
+          "internalType": "address[]",
+          "name": "tokens",
+          "type": "address[]"
         },
         {
           "internalType": "address[]",
@@ -494,5 +494,5 @@
     }
   ],
   "filePath": "handprotocol-contracts/contracts/sweetspot.sol",
-  "pinnedAt": 1741371712908
+  "pinnedAt": 1742558502545
 }

@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.28+commit.7893614a"
+		"version": "0.8.29+commit.ab55807c"
 	},
 	"language": "Solidity",
 	"output": {
@@ -270,9 +270,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "token",
-						"type": "address"
+						"internalType": "address[]",
+						"name": "tokens",
+						"type": "address[]"
 					},
 					{
 						"internalType": "address[]",
@@ -578,7 +578,7 @@
 		"userdoc": {
 			"kind": "user",
 			"methods": {
-				"bulkSetAllowedAmount(address,address[],uint256[])": {
+				"bulkSetAllowedAmount(address[],address[],uint256[])": {
 					"notice": "Sets the allowed amount for multiple users for a given token in one call."
 				},
 				"claim(address)": {
@@ -724,11 +724,11 @@
 			]
 		},
 		"contracts/sweetspot.sol": {
-			"keccak256": "0xc1f06e157c4b41c57a88ca0a24e18bed54aa00b3e66c6f32e2cb7583d85b9e32",
+			"keccak256": "0xb7b4f275b00a47fe2837fa18f45a77014066b124848f1e1ab1e6c866db394b41",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6171bb0be84030314e9c9800a981442a1323945aacdd94aa20aaf939ac767434",
-				"dweb:/ipfs/QmQbhNwxkMXDCTnjsdPP584CBZbjWpqfVq943Q6VCRBWp2"
+				"bzz-raw://9f54329d1cc27d78a1aba8ddac70a9c8ca2844f089cf0914e8878926ebbd1eb9",
+				"dweb:/ipfs/QmYCLEuDgfqoFf9uScUbCfhr2yEwFdv4G5prTZQmAKoYMV"
 			]
 		}
 	},

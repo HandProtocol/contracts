@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.26+commit.8a97fa7a"
+		"version": "0.8.29+commit.ab55807c"
 	},
 	"language": "Solidity",
 	"output": {
@@ -176,7 +176,7 @@
 		"compilationTarget": {
 			".deps/npm/@openzeppelin/contracts/proxy/transparent/ProxyAdmin.sol": "ProxyAdmin"
 		},
-		"evmVersion": "cancun",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -205,19 +205,19 @@
 			]
 		},
 		".deps/npm/@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol": {
-			"keccak256": "0x0a8a5b994d4c4da9f61d128945cc8c9e60dcbc72bf532f72ae42a48ea90eed9a",
+			"keccak256": "0xa3066ff86b94128a9d3956a63a0511fa1aae41bd455772ab587b32ff322acb2e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e63ae15b6b1079b9d3c73913424d4278139f9e9c9658316675b9c48d5883a50d",
-				"dweb:/ipfs/QmWLxBYfp8j1YjNMabWgv75ELTaK2eEYEEGx7qsJbxVZZq"
+				"bzz-raw://bf7b192fd82acf6187970c80548f624b1b9c80425b62fa49e7fdb538a52de049",
+				"dweb:/ipfs/QmWXG1YCde1tqDYTbNwjkZDWVgPEjzaQGSDqWkyKLzaNua"
 			]
 		},
 		".deps/npm/@openzeppelin/contracts/proxy/ERC1967/ERC1967Utils.sol": {
-			"keccak256": "0x911c3346ee26afe188f3b9dc267ef62a7ccf940aba1afa963e3922f0ca3d8a06",
+			"keccak256": "0x8decfa54cec979c824b044b8128cd91d713f72c71fd7dfa54974624d8c949898",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://04539f4419e44a831807d7203375d2bc6a733da256efd02e51290f5d5015218c",
-				"dweb:/ipfs/QmPZ97gsAAgaMRPiE2WJfkzRsudQnW5tPAvMgGj1jcTJtR"
+				"bzz-raw://271f914261a19d87117a777e0924ada545c16191ef9b00cc40b0134fc14ebc70",
+				"dweb:/ipfs/QmdvVNWHGHQrGGPonZJs5NuzTevTjZRM2zayKrDJf7WBA2"
 			]
 		},
 		".deps/npm/@openzeppelin/contracts/proxy/Proxy.sol": {
@@ -237,19 +237,19 @@
 			]
 		},
 		".deps/npm/@openzeppelin/contracts/proxy/transparent/ProxyAdmin.sol": {
-			"keccak256": "0xeb19221d51578ea190f0b7d807c5f196db6ff4eca90fee396f45ce9669080ba0",
+			"keccak256": "0x46f86003755f50eff00a7c5aaf493ae62e024142b8aec4493a313851d3c14872",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e4ca4196dab20274d1276d902d17034065f014aeebf496f20e39e760899650b0",
-				"dweb:/ipfs/QmXFoF93GmZgZHbUvSqLjBGnQ3MY429Bnvk7SvLKEUsEAN"
+				"bzz-raw://462c770cb667cc75ab22df5a29c50873b24b267274edf87ac5cfe0112bf4c3f7",
+				"dweb:/ipfs/QmTfKk32AkQ2yyYZCYJ44V69EM5t9ryBFC6bRF7FVMHXvj"
 			]
 		},
 		".deps/npm/@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol": {
-			"keccak256": "0x724b755843cff10a8e1503d374b857c9e7648be24e7acf1e5bee0584f1b0505c",
+			"keccak256": "0x92579f452fe663595a898cbac85d80bb3868a6c9f034f19ba7fbebdfa3b65a4d",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://740ad3ba1c12e426ea32cf234f445431a13efa8dbed38b53c869237e31fc8347",
-				"dweb:/ipfs/QmQ3UKUnBQn4gjxjDNGuDLQWuQqcxWzyj1HzwjFgjAJBqh"
+				"bzz-raw://d07a888cd4a26c7077a30dd99e9ac30fbe2752bfb37e58c65f06a3b192079ef3",
+				"dweb:/ipfs/QmZCQY4FC4ynBv9dha4BBWM1vYxTUJPBdFBS4HEFe6XzVB"
 			]
 		},
 		".deps/npm/@openzeppelin/contracts/utils/Address.sol": {
